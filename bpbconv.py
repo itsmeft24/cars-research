@@ -34,7 +34,7 @@ param_block.seek(labeldef_offset)
 if MAGIC == b"BPBh":
     print("Race-O-Rama File Detected!")
     RACE_O_RAMA = True
-elif:
+elif MAGIC == b"BPB\x00":
     print("Mater-National Detected!")
     RACE_O_RAMA = False
 else:
