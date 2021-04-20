@@ -34,8 +34,12 @@ param_block.seek(labeldef_offset)
 if MAGIC == b"BPBh":
     print("Race-O-Rama File Detected!")
     RACE_O_RAMA = True
-else:
+elif:
+    print("Mater-National Detected!")
     RACE_O_RAMA = False
+else:
+    print("Invalid BPB File!")
+    exit(-1)
 
 for x in range(numlabels):
     param_block.seek(x*16+0x20)#Seek to the offset of the definition and unpack it into a tuple.
@@ -107,7 +111,6 @@ for x in range(numlabels):
             else:
                 print("UNKNOWN_FLAG of type RACE_O_RAMA: "+str(extra_string_offset))
         else:
-            print("Mater-National Detected!")
         
             if flag == 65535:
                 print("Flag 0xFF found! Please report this file to @data.arc#5576 on Discord!")
