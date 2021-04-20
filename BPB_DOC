@@ -1,0 +1,52 @@
+The Binary Parameter Block
+
+Example of INI structure:
+
+[Label]
+Option/Child = Value
+
+Header - 
+Magic - b"BPBh" for Race-O-Rama and b"BPB\x00" for Mater-National (4bytes)
+Start of Label Definition (4 bytes)
+Start of Child and Value pair definition (4 bytes)
+Number of Labels in file as representsed in Label definition (2 bytes)
+Number of Options in file as representsed in Option definition (2 bytes)
+
+Also Header - 
+Label String Offset at 0x10 (4 bytes)
+Size of Label String data at 0x14 (4 bytes)
+Value String data Offset at 0x18 (4 bytes)
+Size of Value String data at 0x1c (4 bytes)
+
+Table of Labels and Children (Definitions)
+
+Label Definition - 
+4 bytes of ??
+Offset to the corrseponding Label (4 bytes)
+Flag (Is 0xFF most of the time, otherwise its an integer that should be concatenated to the Label name. Ex: Song 1) (2 bytes)
+The number of children (2 bytes)
+Index for first option in a Label (4 bytes)
+
+Option Definition -
+4 Bytes of ??
+
+If the file is from Race-O-Rama, then the flag will be the first byte in the Option offset. Otherwise, it will be after the offset.
+
+Offset to the corrseponding Option (4 bytes)
+Mater-National Flag (2 bytes)
+Null Padding (2 bytes) - This area is populated with a String Value, if the flag says it should be.
+Value (4 bytes) - This area is populated with either an offset to a String Value, or the value itself.
+
+Footer - 
+Label String Data - Contains every referenced Label, separated with a null byte.
+Values that are longer than 5 bytes go in the Value Data, otherwise they go with the entry (0x02 flag).
+
+To-Do:
+Find out what those unknown 4 byte sequences mean.
+
+Data Types:
+Float - Big Endian Single (Defined as flag 0x08 in Mater-National and 0xC0 in Race-O-Rama)
+String (Right after definition) - (Stored right next to definition, defined as flag 0x02 in Mater-National and 0x40 in Race-O-Rama)
+String (Value Data) (Stored as an offset to a string in the Value String data in the footer, defined as flag 0x01 in Mater-National and 0x00 in Race-O-Rama)
+This data type is inferred as the default if the data starts with "" or has an ascii character in it.
+Integer - (Stored as a 4 byte Big Endian integer, defined as flag 0x04 in Mater-National and 0x80 in Race-O-Rama)
