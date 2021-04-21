@@ -56,9 +56,15 @@ for x in range(numlabels):
     name = readString(param_block)
     param_block.seek(x*16+0x20)
     if flag == 65535:# Is a "Normal" Label Definition?
-        output.write("["+name+"]\n")
+        if x == 0:
+            output.write("["+name+"]\n")
+        else:
+            output.write("\n["+name+"]\n")
     else:
-        output.write("["+name+str(flag)+"]\n")
+        if x == 0:
+            output.write("["+name+str(flag)+"]\n")
+        else:
+            output.write("\n["+name+str(flag)+"]\n")
     offset_seek = (first_option_index)*16+childdef_offset
     for y in range(number_of_children):
         
