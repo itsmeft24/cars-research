@@ -15,7 +15,6 @@ def readString(myfile):
         str_list.append(str.decode('ascii'))
 
 param_block = open(sys.argv[1], "rb")
-output = open(sys.argv[2], "w")
 param_header = struct.unpack(HEADER, param_block.read(32))
 
 MAGIC = param_header[0]
@@ -39,6 +38,8 @@ elif MAGIC == b"BPB\x00":
 else:
     print("Invalid BPB File!")
     exit(-1)
+
+output = open(sys.argv[2], "w")
 
 for x in range(numlabels):
     param_block.seek(x*16+0x20)#Seek to the offset of the definition and unpack it into a tuple.
