@@ -1,4 +1,5 @@
 import sys, struct
+import numpy as np
 
 #STRUCT_DEFINITIONS
 HEADER = ">4siihhiiii"
@@ -18,8 +19,6 @@ output = open(sys.argv[2], "w")
 param_header = struct.unpack(HEADER, param_block.read(32))
 
 MAGIC = param_header[0]
-
-
 labeldef_offset = param_header[1]
 childdef_offset = param_header[2]
 numlabels = param_header[3]
@@ -50,7 +49,7 @@ for x in range(numlabels):
     UNKNOWN = entry_data[0]
     string_offset = entry_data[1]
     flag = entry_data[2]
-    number_of_children = entry_data[3]# Could also hold type definition for Options/Children
+    number_of_children = entry_data[3]
     first_option_index = entry_data[4]
 
     param_block.seek(string_offset+labelstrings_offset)
@@ -74,12 +73,6 @@ for x in range(numlabels):
             param_block.seek(offset_seek+5+y*16)
             string_offset = struct.unpack('>I', b"\x00"+param_block.read(3))[0]
         
-        # Race-O-Rama Flags
-        # 0x40 value is right after
-        # 0x80 is int
-        # 0xc0 is float
-        # 0x00 value offset
-
         flag = entry_data[2]
         value_offset = entry_data[4]
         param_block.seek(string_offset+labelstrings_offset)
@@ -102,30 +95,19 @@ for x in range(numlabels):
                 output.write(name+OPTION_INDEX+"="+value+"\n")
             elif extra_string_offset == b"\xC0":
                 param_block.seek(0xC, 1)
-                value = str(struct.unpack('>f', param_block.read(4))[0])
+                value = str(np.float32(struct.unpack('>f', param_block.read(4))[0]))
                 output.write(name+OPTION_INDEX+"="+value+"\n")
             elif extra_string_offset == b"\x00":
                 param_block.seek(value_offset+optionstrings_offset)
                 value = readString(param_block)
                 output.write(name+OPTION_INDEX+"="+value+"\n")
             else:
-                print("UNKNOWN_FLAG of type RACE_O_RAMA: "+str(extra_string_offset))
+                print("UNKNOWN_FLAG of type RACE_O_RAMA: "+str(extra_string_offset)+" Please report this file to @data.arc#5576 on Discord!")
         else:
         
             if flag == 65535:
                 print("Flag 0xFF found! Please report this file to @data.arc#5576 on Discord!")
-                # param_block.seek(0xC, 1)
-                # value = str(struct.unpack('>I', param_block.read(4))[0])
-                # param_block.seek(int(value)-1+optionstrings_offset)
-                # char = param_block.read(1)
-
-                # if char == b"\x00":
-                    # param_block.seek(int(value)+optionstrings_offset)
-                    # value = readString(param_block)
-                    # output.write(name+"="+value+"\n")
-                # else:
-                    # output.write(name+"="+value+"\n")
-            elif flag == 1:# Flag is 0x01?
+            elif flag == 1:# String Offset
                 param_block.seek(value_offset+optionstrings_offset)
                 value = readString(param_block)
                 output.write(name+"="+value+"\n")
@@ -135,11 +117,11 @@ for x in range(numlabels):
                 output.write(name+"="+value+"\n")
             elif flag == 8:# Flag is 0x08?
                 param_block.seek(0xC, 1)
-                value = str(struct.unpack('>f', param_block.read(4))[0])
+                value = str(np.float32(struct.unpack('>f', param_block.read(4))[0]))
                 output.write(name+"="+value+"\n")
             elif flag == 4:# Flag is 0x04?
                 param_block.seek(0xC, 1)
                 value = str(struct.unpack('>I', param_block.read(4))[0])
                 output.write(name+"="+value+"\n")
             else:
-                output.write(name+" UNKNOWN_FLAG:"+hex(flag)+"\n")
+                print(name+" UNKNOWN_FLAG:"+hex(flag)+" Please report this file to @data.arc#5576 on Discord!")
