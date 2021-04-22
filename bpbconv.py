@@ -3,7 +3,7 @@ import numpy as np
 
 #STRUCT_DEFINITIONS
 HEADER = ">4siihhiiii"
-PARAM_ENTRY = ">IIHHI"
+PARAM_ENTRY = ">IIHHi"
 
 def readString(myfile):
     str_list = []
@@ -97,7 +97,7 @@ for x in range(numlabels):
                 output.write(name+OPTION_INDEX+"="+value+"\n")
             elif extra_string_offset == b"\x80":
                 param_block.seek(0xC, 1)
-                value = str(struct.unpack('>I', param_block.read(4))[0])
+                value = str(struct.unpack('>i', param_block.read(4))[0])
                 output.write(name+OPTION_INDEX+"="+value+"\n")
             elif extra_string_offset == b"\xC0":
                 param_block.seek(0xC, 1)
@@ -127,7 +127,7 @@ for x in range(numlabels):
                 output.write(name+"="+value+"\n")
             elif flag == 4:# Flag is 0x04?
                 param_block.seek(0xC, 1)
-                value = str(struct.unpack('>I', param_block.read(4))[0])
+                value = str(struct.unpack('>i', param_block.read(4))[0])
                 output.write(name+"="+value+"\n")
             else:
                 print(name+" UNKNOWN_FLAG:"+hex(flag)+" Please report this file to @data.arc#5576 on Discord!")
