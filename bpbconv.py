@@ -3,8 +3,7 @@ import numpy as np
 
 #STRUCT_DEFINITIONS
 HEADER = ">4siihhiiii"
-LABEL_DEF = ">IIHHI"
-CHILD_DEF = ">IIHHI"
+PARAM_ENTRY = ">IIHHI"
 
 def readString(myfile):
     str_list = []
@@ -44,7 +43,7 @@ output = open(sys.argv[2], "w")
 for x in range(numlabels):
     param_block.seek(x*16+0x20)#Seek to the offset of the definition and unpack it into a tuple.
 
-    entry_data = struct.unpack(LABEL_DEF, param_block.read(0x10))
+    entry_data = struct.unpack(PARAM_ENTRY, param_block.read(0x10))
     param_block.seek(x*16+0x20)
 
     UNKNOWN = entry_data[0]
@@ -70,7 +69,7 @@ for x in range(numlabels):
     for y in range(number_of_children):
         
         param_block.seek(offset_seek+y*16)
-        entry_data = struct.unpack(LABEL_DEF, param_block.read(0x10))
+        entry_data = struct.unpack(PARAM_ENTRY, param_block.read(0x10))
         UNKNOWN = entry_data[0]
         string_offset = entry_data[1]
 
