@@ -7,7 +7,11 @@ if len(sys.argv) < 2:
 gct = open(sys.argv[1], "rb")
 tex0 = open(sys.argv[2], "wb")
 
+gct.seek(0, 2)
+gct_size = gct.tell()
+
 gct.seek(0x4)
+
 pixelformat = int.from_bytes(gct.read(4), "big")
 
 unknown_value = b"\x00\x00\x00\x00"
@@ -27,9 +31,7 @@ if pixelformat == 0x3A:
     width = wh[0]
     height = wh[1]
     gct.seek(0x224)
-    
     data = gct.read()
-    
     image_format = 0x09 # CI8
     has_palette = 1
     if len(sys.argv) != 4:
@@ -61,13 +63,9 @@ elif pixelformat == 0x29:
     mipmin_width = wh[2]
     mipmin_height = wh[3]
     if num_images > 1:
-        area = -width*height
-        for x in range(num_images):
-            area = (width/pow(2, x))*(height/pow(2, x)) + 0xC + area
-        base_offset = int(area/2)
+        gct.seek(gct_size-round((width*height)/2), 0)
     else:
-        base_offset = 0x24
-    gct.seek(base_offset)
+        gct.seek(0x24)
     data = gct.read()
     image_format = 0x0e # CMPR
     has_palette = 0
