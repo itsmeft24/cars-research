@@ -70,6 +70,25 @@ elif pixelformat == 0x29:
     image_format = 0x0e # CMPR
     has_palette = 0
     num_images = 1
+elif pixelformat == 0x0f:
+    print("PIXELFORMAT: RGBA8")
+    gct.seek(0xC)
+    num_images = int.from_bytes(gct.read(4), "big") # number of mipmaps
+    
+    gct.seek(0x10)
+    wh = struct.unpack(">IIII", gct.read(16))
+    width = wh[0]
+    height = wh[1]
+    mipmin_width = wh[2]
+    mipmin_height = wh[3]
+    if num_images > 1:
+        gct.seek(gct_size-round((width*height)*4), 0)
+    else:
+        gct.seek(0x24)
+    data = gct.read()
+    image_format = 0x06 # RGBA8
+    has_palette = 0
+    num_images = 1
 else:
     print("Unsupported Pixelformat! Please DM this file to @data.arc#5576 on Discord!")
     exit(-1)
