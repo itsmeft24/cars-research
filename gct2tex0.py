@@ -28,7 +28,10 @@ if pixelformat == 0x3A:
     wh = struct.unpack(">II", gct.read(8))
     width = wh[0]
     height = wh[1]
-    gct.seek(0x224)
+    if num_images > 1:
+        gct.seek(gct_size-width*height, 0)
+    else:
+        gct.seek(0x224)
     data = gct.read()
     image_format = 0x09 # CI8
     has_palette = 1
@@ -48,6 +51,7 @@ if pixelformat == 0x3A:
         plt_buf.write(plt)
     else:
         pass
+    num_images = 1
 
 elif pixelformat == 0x29:
     print("PIXELFORMAT: CMPR")
@@ -80,7 +84,7 @@ elif pixelformat == 0x0f:
     mipmin_width = wh[2]
     mipmin_height = wh[3]
     if num_images > 1:
-        gct.seek(gct_size-round((width*height)*4), 0)
+        gct.seek(gct_size-(width*height*4), 0)
     else:
         gct.seek(0x24)
     data = gct.read()
