@@ -14,8 +14,6 @@ gct.seek(0x4)
 
 pixelformat = int.from_bytes(gct.read(4), "big")
 
-unknown_value = b"\x00\x00"
-
 magic = b"TEX0"
 version_number = 1
 brres_offset = 0
@@ -106,5 +104,5 @@ tex0.write(width.to_bytes(2, byteorder='big'))
 tex0.write(height.to_bytes(2, byteorder='big'))
 tex0.write(image_format.to_bytes(4, byteorder='big'))
 tex0.write(num_images.to_bytes(4, byteorder='big'))
-tex0.write(unknown_value*6)
+tex0.seek(0x40)
 tex0.write(data)
