@@ -94,7 +94,10 @@ for x in range(numlabels):
             if extra_string_offset == b"\x40":
                 param_block.seek(0xA, 1)
                 value = readString(param_block)
-                output.write(name+OPTION_INDEX+"="+value+"\n")
+                if " " in value:
+                    output.write(name+OPTION_INDEX+"="+'"'+value+'"\n')
+                else:
+                    output.write(name+OPTION_INDEX+"="+value+"\n")
             elif extra_string_offset == b"\x80":
                 param_block.seek(0xC, 1)
                 value = str(struct.unpack('>i', param_block.read(4))[0])
@@ -106,7 +109,10 @@ for x in range(numlabels):
             elif extra_string_offset == b"\x00":
                 param_block.seek(value_offset+optionstrings_offset)
                 value = readString(param_block)
-                output.write(name+OPTION_INDEX+"="+value+"\n")
+                if " " in value:
+                    output.write(name+OPTION_INDEX+"="+'"'+value+'"\n')
+                else:
+                    output.write(name+OPTION_INDEX+"="+value+"\n")
             else:
                 print("UNKNOWN_FLAG of type RACE_O_RAMA: "+str(extra_string_offset)+" Please report this file to @data.arc#5576 on Discord!")
         else:
@@ -116,11 +122,19 @@ for x in range(numlabels):
             elif flag == 1:# String Offset
                 param_block.seek(value_offset+optionstrings_offset)
                 value = readString(param_block)
+                if " " in value:
+                    output.write(name+"="+'"'+value+'"\n')
+                else:
+                    output.write(name+"="+value+"\n")
+                
                 output.write(name+"="+value+"\n")
             elif flag == 2:# Flag is 0x02?
                 param_block.seek(0xA, 1)
                 value = readString(param_block)
-                output.write(name+"="+value+"\n")
+                if " " in value:
+                    output.write(name+"="+'"'+value+'"\n')
+                else:
+                    output.write(name+"="+value+"\n")
             elif flag == 8:# Flag is 0x08?
                 param_block.seek(0xC, 1)
                 value = str(np.float32(struct.unpack('>f', param_block.read(4))[0]))
