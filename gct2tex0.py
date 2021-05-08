@@ -14,7 +14,7 @@ gct.seek(0x4)
 
 pixelformat = int.from_bytes(gct.read(4), "big")
 
-unknown_value = b"\x00\x00\x00\x00"
+unknown_value = b"\x00\x00"
 
 magic = b"TEX0"
 version_number = 1
@@ -45,8 +45,8 @@ if pixelformat == 0x3A:
         plt_buf.write((sys.getsizeof(plt)+0x40).to_bytes(4, byteorder='big'))
         plt_buf.write(b"\x00\x00\x00\x01\x00\x00\x00\x00")
         plt_buf.write(b"\x00\x00\x00\x40\x00\x00\x00\x00\x00\x00\x00\x02")
-        plt_buf.write(number_colors.to_bytes(4, byteorder='big')+b"\x00\x00")
-        plt_buf.write(unknown_value*8)
+        plt_buf.write(number_colors.to_bytes(2, byteorder='big')+b"\x00\x00")
+        plt_buf.seek(0x40)
         plt_buf.write(plt)
     else:
         pass
