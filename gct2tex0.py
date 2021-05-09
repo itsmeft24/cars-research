@@ -94,19 +94,9 @@ elif pixelformat == 0x0f:
 else:
     print("Unsupported Pixelformat! Please DM this file to @data.arc#5576 on Discord!")
     exit(-1)
-size = sys.getsizeof(data) + 0xB
-# TEX0 Header
+size = sys.getsizeof(data) + 0x1F
+# Write TEX0
 tex0.write(magic)
-tex0.write(size.to_bytes(4, byteorder='big'))
-tex0.write(version_number.to_bytes(4, byteorder='big'))
-tex0.write(brres_offset.to_bytes(4, byteorder='big'))
-tex0.write(section_offset.to_bytes(4, byteorder='big'))
-tex0.write(string_offset.to_bytes(4, byteorder='big'))
-# Image Header
-tex0.write(has_palette.to_bytes(4, byteorder='big'))
-tex0.write(width.to_bytes(2, byteorder='big'))
-tex0.write(height.to_bytes(2, byteorder='big'))
-tex0.write(image_format.to_bytes(4, byteorder='big'))
-tex0.write(num_images.to_bytes(4, byteorder='big'))
+tex0.write(struct.pack(">IIIIIIHHII", size, version_number, brres_offset, section_offset, string_offset, has_palette, width, height, image_format, num_images))
 tex0.seek(0x40)
 tex0.write(data)
