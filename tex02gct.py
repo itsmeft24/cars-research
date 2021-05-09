@@ -10,48 +10,39 @@ CMPR_HEADER = b"\x00\x00\x00\x02\x00\x00\x00\x29\x00\x00\x00\x00"
 RGBA8_HEADER = b"\x00\x00\x00\x02\x00\x00\x00\x0F\x00\x00\x00\x00"
 CI8_HEADER =  b"\x00\x00\x00\x02\x00\x00\x00\x3A"
 
-tex0.seek(0x20)
-pixelformat = int.from_bytes(tex0.read(4), "big")
+tex0_header = struct.unpack(">4sIIIIIIHHII", tex0.read(0x28))
+
+magic = tex0_header[0]
+size = tex0_header[1]
+version_number = tex0_header[2]
+brres_offset = tex0_header[3]
+section_offset = tex0_header[4]
+string_offset = tex0_header[5]
+has_palette = tex0_header[6]
+width = tex0_header[7]
+height = tex0_header[8]
+pixelformat = tex0_header[9]
+number_images = tex0_header[10]
+
+if magic != b"TEX0":
+    print("Invalid TEX0 File.")
+    exit(-1)
 
 if pixelformat == 0x0e:
-    tex0.seek(0x8)
-    version_number = int.from_bytes(tex0.read(4), "big")
-    tex0.seek(0x24)
-    number_images = int.from_bytes(tex0.read(4), "big")
-    tex0.seek((version_number*4)+0x18)
-    width = int.from_bytes(tex0.read(2), "big")
-    tex0.seek((version_number*4)+0x1a)
-    height = int.from_bytes(tex0.read(2), "big")
     tex0.seek(0x40)
     data = tex0.read()
     gct.write(CMPR_HEADER)
-    area = int((width*height)/2)
-    gct.write(number_images.to_bytes(4, byteorder='big'))
-    gct.write(width.to_bytes(4, byteorder='big'))
-    gct.write(height.to_bytes(4, byteorder='big'))
-    gct.write(width.to_bytes(4, byteorder='big'))
-    gct.write(height.to_bytes(4, byteorder='big'))
-    gct.write(area.to_bytes(4, byteorder='big'))
+    image_size = int((width*height)/2)
+    number_images = 1
+    gct.write(struct.pack(">IIIIII", number_images, width, height, width, height, image_size))
     gct.write(data)
 elif pixelformat == 0x06:
-    tex0.seek(0x8)
-    version_number = int.from_bytes(tex0.read(4), "big")
-    tex0.seek(0x24)
-    number_images = int.from_bytes(tex0.read(4), "big")
-    tex0.seek((version_number*4)+0x18)
-    width = int.from_bytes(tex0.read(2), "big")
-    tex0.seek((version_number*4)+0x1a)
-    height = int.from_bytes(tex0.read(2), "big")
     tex0.seek(0x40)
     data = tex0.read()
     gct.write(RGBA8_HEADER)
-    area = int((width*height)/2)
-    gct.write(number_images.to_bytes(4, byteorder='big'))
-    gct.write(width.to_bytes(4, byteorder='big'))
-    gct.write(height.to_bytes(4, byteorder='big'))
-    gct.write(width.to_bytes(4, byteorder='big'))
-    gct.write(height.to_bytes(4, byteorder='big'))
-    gct.write(area.to_bytes(4, byteorder='big'))
+    image_size = width*height*4
+    number_images = 1
+    gct.write(struct.pack(">IIIIII", number_images, width, height, width, height, image_size))
     gct.write(data)
 elif pixelformat == 0x09:
     if len(sys.argv) < 4:
@@ -59,32 +50,18 @@ elif pixelformat == 0x09:
         exit(-1)
     else:
         palette = open(sys.argv[3], "rb")
-    tex0.seek(0x8)
-    version_number = int.from_bytes(tex0.read(4), "big")
-    tex0.seek((version_number*4)+0x18)
-    tex0.seek(0x1c)
-    wh = struct.unpack(">HH", tex0.read(4))
-    width = wh[0]
-    height = wh[1]
-    tex0.seek(0x24)
-    number_images = int.from_bytes(tex0.read(4), "big")
     tex0.seek(0x40)
     data = tex0.read()
     palette.seek(0x1c)
     number_colors = int.from_bytes(palette.read(2), "big")
     palette.seek(0x40)
     palette = palette.read(number_colors*2)
-    
     gct.write(CI8_HEADER)
     gct.write(number_colors.to_bytes(4, byteorder='big'))
     gct.write(palette)
-    area = int((width*height)/2)
-    gct.write(number_images.to_bytes(4, byteorder='big'))
-    gct.write(width.to_bytes(4, byteorder='big'))
-    gct.write(height.to_bytes(4, byteorder='big'))
-    gct.write(width.to_bytes(4, byteorder='big'))
-    gct.write(height.to_bytes(4, byteorder='big'))
-    gct.write(area.to_bytes(4, byteorder='big'))
+    image_size = width*height
+    number_images = 1
+    gct.write(struct.pack(">IIIIII", number_images, width, height, width, height, image_size))
     gct.write(data)
 else:
     print("Unsupported Pixelformat!")
