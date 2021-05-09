@@ -1,7 +1,7 @@
-import os, math
+import os, math, sys
 
-Lchannel = open("cross2_menuL.dsp", "r+b")
-Rchannel = open("cross2_menuR.dsp", "r+b")
+Lchannel = open(sys.argv[1], "r+b")
+Rchannel = open(sys.argv[2], "r+b")
 
 Lchannel.seek(0, 2)
 LSIZE = Lchannel.tell()
@@ -23,7 +23,7 @@ R_EXTDATA = RSIZE % 0x10000
 Rchannel.seek(RSIZE - R_EXTDATA)
 R_EXTDATA = Rchannel.read(R_EXTDATA)
 
-DATA_OUT = open("main.itl", "w+b")
+DATA_OUT = open(sys.argv[3], "w+b")
 DATA_OUT.write((LSIZE+RSIZE)*b"\x00")
 
 Lchannel.seek(0)
