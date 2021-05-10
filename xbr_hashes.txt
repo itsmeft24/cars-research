@@ -9,7 +9,7 @@ QUICKBMS_INDEX,FILEPATH
 0000000000000e40.asm,chars.gcn.mst
 00000000000034d5.asm,HUB.gcn.mst
 0000000000002a68.hub,Records_Matrix.txt
-0000000000001b17.th_,config.txt
+0000000000001b17.th_,C\UI\HBM\config.txt
 0000000000001bed.wib,savebanner.bin
 0000000000000cea.wib,savebanner.bin
 00000000000007c4.wib,savebanner.bin
