@@ -15,3 +15,4 @@ QUICKBMS_INDEX,FILEPATH
 00000000000007c4.wib,savebanner.bin
 000000000000062d.wib,savebanner.bin
 000000000000329e.wib,savebanner.bin
+0000000000000417.jpg,C\UI\Tex\photo_blank.x360.bin
