@@ -3,11 +3,11 @@ QUICKBMS_INDEX,FILEPATH
 000000000000200d.asm,carsingame_stbl.txt
 00000000000015eb.asm,carsrsui_stbl.txt
 00000000000014a7.asm,carsfrontendui_stbl.txt
-000000000000078e.asm,FE.gcn.mst
-000000000000264c.asm,RB_SM.gcm.mst
-0000000000001f57.asm,RB_MT.gcm.mst
-0000000000000e40.asm,chars.gcn.mst
-00000000000034d5.asm,HUB.gcn.mst
+000000000000078e.asm,FE.x360.mst
+000000000000264c.asm,RB_SM.x360.mst
+0000000000001f57.asm,RB_MT.x360.mst
+0000000000000e40.asm,chars.x360.mst
+00000000000034d5.asm,HUB.x360.mst
 0000000000002a68.hub,Records_Matrix.txt
 0000000000001b17.th_,C\UI\HBM\config.txt
 0000000000001bed.wib,savebanner.bin
