@@ -18,6 +18,7 @@ if param_block.read(0x6) == b"ZLIBME":
     param_block.seek(0x10)
     param_block = io.BytesIO(zlib.decompress(param_block.read()))
 
+param_block.seek(0)
 param_header = struct.unpack(HEADER, param_block.read(32))
 
 MAGIC = param_header[0]
