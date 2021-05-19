@@ -1,5 +1,4 @@
-import sys, struct
-import numpy as np
+import sys, struct, zlib, io, numpy as np
 
 #STRUCT_DEFINITIONS
 HEADER = ">4siihhiiii"
@@ -14,6 +13,11 @@ def readString(myfile):
         str_list.append(str.decode('ascii'))
 
 param_block = open(sys.argv[1], "rb")
+
+if param_block.read(0x6) == b"ZLIBME":
+    param_block.seek(0x10)
+    param_block = io.BytesIO(zlib.decompress(param_block.read()))
+
 param_header = struct.unpack(HEADER, param_block.read(32))
 
 MAGIC = param_header[0]
