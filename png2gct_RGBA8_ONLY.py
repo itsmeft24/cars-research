@@ -14,7 +14,6 @@ def tex_encode_rgba8(image):
     width = width + (width%4)
     padded = Image.new("RGBA", (width, height), color=0)
     padded.paste(image, (0,0))
-    padded.save("padded.png")
     image = np.array(padded)
     del padded
     for row in np.arange(height - blk_height + 1, step=blk_height):
