@@ -30,17 +30,17 @@ if magic != b"TEX0":
 
 if pixelformat == 0x0e:
     tex0.seek(0x40)
-    data = tex0.read()
-    gct.write(CMPR_HEADER)
     image_size = int((width*height)/2)
+    data = tex0.read(image_size)
+    gct.write(CMPR_HEADER)
     number_images = 1
     gct.write(struct.pack(">IIIIII", number_images, width, height, width, height, image_size))
     gct.write(data)
 elif pixelformat == 0x06:
     tex0.seek(0x40)
-    data = tex0.read()
-    gct.write(RGBA8_HEADER)
     image_size = width*height*4
+    data = tex0.read(image_size)
+    gct.write(RGBA8_HEADER)
     number_images = 1
     gct.write(struct.pack(">IIIIII", number_images, width, height, width, height, image_size))
     gct.write(data)
@@ -51,7 +51,8 @@ elif pixelformat == 0x09:
     else:
         palette = open(sys.argv[3], "rb")
     tex0.seek(0x40)
-    data = tex0.read()
+    image_size = width*height
+    data = tex0.read(image_size)
     palette.seek(0x1c)
     number_colors = int.from_bytes(palette.read(2), "big")
     palette.seek(0x40)
@@ -59,7 +60,6 @@ elif pixelformat == 0x09:
     gct.write(CI8_HEADER)
     gct.write(number_colors.to_bytes(4, byteorder='big'))
     gct.write(palette)
-    image_size = width*height
     number_images = 1
     gct.write(struct.pack(">IIIIII", number_images, width, height, width, height, image_size))
     gct.write(data)
