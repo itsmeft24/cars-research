@@ -18,7 +18,6 @@ magic = b"TEX0"
 version_number = 1
 brres_offset = 0
 section_offset = 0x40
-string_offset = 0
 
 if pixelformat == 0x3A:
     print("PIXELFORMAT: CI8")
@@ -43,12 +42,15 @@ if pixelformat == 0x3A:
         plt = gct.read(number_colors*2)
         plt_buf = open(sys.argv[2][:-5]+".plt0", "wb")
         plt_buf.write(b"PLT0")
-        plt_buf.write((sys.getsizeof(plt)+0x40).to_bytes(4, byteorder='big'))
+        plt_buf.write((sys.getsizeof(plt)+0x1F).to_bytes(4, byteorder='big'))
         plt_buf.write(b"\x00\x00\x00\x01\x00\x00\x00\x00")
-        plt_buf.write(b"\x00\x00\x00\x40\x00\x00\x00\x00\x00\x00\x00\x02")
+        plt_buf.write(b"\x00\x00\x00\x40")
+        plt_buf.write((sys.getsizeof(plt)+0x23).to_bytes(4, byteorder='big'))
+        plt_buf.write(b"\x00\x00\x00\x02")
         plt_buf.write(number_colors.to_bytes(2, byteorder='big')+b"\x00\x00")
         plt_buf.seek(0x40)
         plt_buf.write(plt)
+        
     else:
         pass
     num_images = 1
@@ -92,9 +94,10 @@ elif pixelformat == 0x0f:
     has_palette = 0
     num_images = 1
 else:
-    print("Unsupported Pixelformat! Please DM this file to @data.arc#5576 on Discord!")
+    print("Unsupported Pixelformat! Please DM this file to @itsmeft24#5576 on Discord!")
     exit(-1)
 size = sys.getsizeof(data) + 0x1F
+string_offset = 0
 # Write TEX0
 tex0.write(magic)
 tex0.write(struct.pack(">IIIIIIHHII", size, version_number, brres_offset, section_offset, string_offset, has_palette, width, height, image_format, num_images))
