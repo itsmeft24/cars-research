@@ -33,8 +33,8 @@ def tex_encode_rgba8(image):
             GB = np.empty((G.size + B.size,), dtype=np.uint8)
             GB[0::2] = G
             GB[1::2] = B
-            output = output + AR
-            output = output + GB
+            output = output + bytes(AR)
+            output = output + bytes(GB)
     return output
 
 image = Image.open(sys.argv[1]).convert("RGBA")
