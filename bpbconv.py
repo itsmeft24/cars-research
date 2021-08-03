@@ -4,13 +4,13 @@ import sys, struct, zlib, io, numpy as np
 HEADER = ">4siihhiiii"
 PARAM_ENTRY = ">IIHHi"
 
-def readString(myfile):
-    str_list = []
+def readString(file):
+    string = b""
     while True:
-        str = myfile.read(1)
-        if bytes(str) == b'\x00':
-            return "".join(str_list)
-        str_list.append(str.decode('ascii'))
+        str = file.read(1)
+        if str == b'\x00':
+            return string.decode('ascii')
+        string = string + str
 
 param_block = open(sys.argv[1], "rb")
 
@@ -61,7 +61,7 @@ for x in range(numlabels):
     name = readString(param_block)
     param_block.seek(x*16+0x20)
     if flag == 65535:# Is a "Normal" Label Definition?
-        if x == 0:
+        if x == 0: # If this is the first label, do not add a newline before the label header.
             output.write("["+name+"]\n")
         else:
             output.write("\n["+name+"]\n")
