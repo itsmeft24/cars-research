@@ -2032,7 +2032,6 @@ C\Global\Chars\CHF\Tex\CHF_logo2.dds
 C\Global\Chars\CHF\Tex\CHF_logo2_gloss.dds
 C\Global\Chars\CHF\Tex\CHF_tire.dds
 C\Global\Chars\CHF\Tex\CHF_tire_gloss.dds
-C\Global\Chars\CHF\Tex\chf_body.xnm
 C\Global\Chars\CHF\Tex\g_carbon.dds
 C\Global\Chars\CHF\Tex\g_carbon.xnm
 C\Global\Chars\CSpat\Anim\CSPAT.mcf
