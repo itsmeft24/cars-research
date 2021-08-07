@@ -3745,6 +3745,7 @@ C\Global\Chars\McQ\Tex\mcq_body_O.dds
 C\Global\Chars\McQ\Tex\mcq_body_a1.xnm
 C\Global\Chars\McQ\Tex\mcq_body_a2.xnm
 C\Global\Chars\McQ\Tex\mcq_body_a3.xnm
+C\Global\Chars\McQ\Tex\mcq_body_alt.dds
 C\Global\Chars\McQ\Tex\mcq_body_b.dds
 C\Global\Chars\McQ\Tex\mcq_body_b.xnm
 C\Global\Chars\McQ\Tex\mcq_body_b1.dds
