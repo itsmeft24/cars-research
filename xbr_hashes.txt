@@ -822,10 +822,6 @@ C\Act\MG_AX\CR_01_AX\CR_01_AX.toy.bpb
 C\Act\MG_AX\CR_01_AX\CR_01_AX.toy.x360.res
 C\Act\MG_AX\CR_01_AX\CR_01_AX.trk
 C\Act\MG_AX\CR_01_AX\CR_01_AX_Audio.toy.bpb
-C\Act\MG_AX\CR_01_AX\Geo\rs_trafficcone.xng
-C\Act\MG_AX\CR_01_AX\Tex\errorlog.txt
-C\Act\MG_AX\CR_01_AX\Tex\rs_sf_stoplight_lens.dds
-C\Act\MG_AX\CR_01_AX\Tex\rs_sf_stoplight_lens.xnm
 C\Act\MG_AX\CR_03_AX01\CR_03_AX01.aty.bpb
 C\Act\MG_AX\CR_03_AX01\CR_03_AX01.lua.bin
 C\Act\MG_AX\CR_03_AX01\CR_03_AX01.toy.bpb
@@ -842,10 +838,6 @@ C\Act\MG_AX\CR_05_AX01\CR_05_AX01.toy.bpb
 C\Act\MG_AX\CR_05_AX01\CR_05_AX01.trk
 C\Act\MG_AX\CR_05_AX01\CR_05_AX01_Audio.toy.bpb
 C\Act\MG_AX\CR_05_AX01\CR_05_EX.toy.bpb
-C\Act\MG_AX\Geo\rs_trafficcone.xng
-C\Act\MG_AX\Tex\errorlog.txt
-C\Act\MG_AX\Tex\rs_sf_stoplight_lens.dds
-C\Act\MG_AX\Tex\rs_sf_stoplight_lens.xnm
 C\Act\MG_CT_MD\CT_MD01\Anim\DeflationCamera.got
 C\Act\MG_CT_MD\CT_MD01\Anim\MD_ARROW.got
 C\Act\MG_CT_MD\CT_MD01\Anim\MD_Arrow.mcf
@@ -10639,7 +10631,6 @@ C\Global\Tex\bolt_pickup_silver.dds
 C\Global\Tex\bolt_pickup_silver.xnm
 C\Global\Tex\danger_sign01.dds
 C\Global\Tex\danger_sign01.xnm
-C\Global\Tex\discerror.dds
 C\Global\Tex\g_Eye_shadow.dds
 C\Global\Tex\g_Headlight.dds
 C\Global\Tex\g_Headlight_flare.dds
@@ -13675,7 +13666,6 @@ E\UI\Tex\ld_mcq_wide.x360.lsi
 E\UI\Tex\load_legal.dds
 E\UI\Tex\load_legal_w.dds
 E\UI\Tex\load_logo.dds
-E\UI\Tex\load_logo_w.dds
 E\UI\Tex\load_screen_1.dds
 E\UI\Tex\load_screen_1_w.dds
 E\UI\Tex\load_screen_2.dds
@@ -13712,7 +13702,6 @@ F\UI\Credits.txt
 F\UI\Tex\icon.tpl
 F\UI\Tex\ld_mcq.x360.lsi
 F\UI\Tex\ld_mcq_wide.x360.lsi
-F\UI\Tex\load_logo_w.dds
 F\UI\savebanner.bin
 G\Audio\DIALOGUE\streams.juk.bpb
 G\Audio\DIALOGUE\streams.txt
@@ -13768,7 +13757,6 @@ G\UI\Tex\ld_mcq.x360.lsi
 G\UI\Tex\ld_mcq_wide.x360.lsi
 G\UI\Tex\load_legal.dds
 G\UI\Tex\load_legal_w.dds
-G\UI\Tex\load_logo_w.dds
 G\UI\credits.txt
 G\UI\savebanner.bin
 I\Loc\I_L_Achievements.bin
@@ -14090,7 +14078,6 @@ S\UI\Tex\ld_mcq.x360.lsi
 S\UI\Tex\ld_mcq_wide.x360.lsi
 S\UI\Tex\load_legal.dds
 S\UI\Tex\load_legal_w.dds
-S\UI\Tex\load_logo_w.dds
 S\UI\credits.txt
 S\UI\savebanner.bin
 config.ini
