@@ -10911,6 +10911,7 @@ C\Scenes\CR_01\Geo\rs_skymodel.xng
 C\Scenes\CR_01\Geo\skyclouds.xng
 C\Scenes\CR_01\MiniMap\MiniMap.x360.res
 C\Scenes\CR_01\MiniMap\MiniMap.x360.tsf
+C\Scenes\CR_01\ShadowMap\ShadowMap.x360.res
 C\Scenes\CR_01\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\CR_01\Tex\MVH_Cloud_Tracks.dds
 C\Scenes\CR_01\Tex\MVH_Cloud_Tracks.xnm
@@ -11027,6 +11028,7 @@ C\Scenes\CR_03\Geo\rs_skymodel.xng
 C\Scenes\CR_03\Geo\skyclouds.xng
 C\Scenes\CR_03\MiniMap\MiniMap.x360.res
 C\Scenes\CR_03\MiniMap\MiniMap.x360.tsf
+C\Scenes\CR_03\ShadowMap\ShadowMap.x360.res
 C\Scenes\CR_03\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\CR_03\Tex\CR_03_Pier_planks.dds
 C\Scenes\CR_03\Tex\CR_03_Pier_planksANIMATED.xnm
@@ -11123,6 +11125,7 @@ C\Scenes\CR_04\Geo\skyclouds.xng
 C\Scenes\CR_04\Geo\steam_card.xng
 C\Scenes\CR_04\MiniMap\MiniMap.x360.res
 C\Scenes\CR_04\MiniMap\MiniMap.x360.tsf
+C\Scenes\CR_04\ShadowMap\ShadowMap.x360.res
 C\Scenes\CR_04\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\CR_04\Tex\CR04_Anim_Billboard.atg
 C\Scenes\CR_04\Tex\CR04_Anim_Billboard.xnm
@@ -11199,6 +11202,7 @@ C\Scenes\CR_05\Geo\rs_skymodel.xng
 C\Scenes\CR_05\Geo\skyclouds.xng
 C\Scenes\CR_05\MiniMap\MiniMap.x360.res
 C\Scenes\CR_05\MiniMap\MiniMap.x360.tsf
+C\Scenes\CR_05\ShadowMap\ShadowMap.x360.res
 C\Scenes\CR_05\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\CR_05\Tex\CR05_dirtroadH02_blenddirt.xnm
 C\Scenes\CR_05\Tex\CR05_dirtroadhirez02.dds
@@ -11401,6 +11405,7 @@ C\Scenes\CT_TD\Geo\skyclouds.xng
 C\Scenes\CT_TD\MiniMap\MiniMap.x360.mtl
 C\Scenes\CT_TD\MiniMap\MiniMap.x360.res
 C\Scenes\CT_TD\MiniMap\MiniMap.x360.tsf
+C\Scenes\CT_TD\ShadowMap\ShadowMap.x360.res
 C\Scenes\CT_TD\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\CT_TD\tex\CR04_Night_Skydome_1.dds
 C\Scenes\CT_TD\tex\CR04_Night_Skydome_1.xnm
@@ -11618,6 +11623,7 @@ C\Scenes\HUB\HUB_Landmark.x360.mtl
 C\Scenes\HUB\HUB_Landmark.x360.res
 C\Scenes\HUB\MiniMap\MiniMap.x360.res
 C\Scenes\HUB\MiniMap\MiniMap.x360.tsf
+C\Scenes\HUB\ShadowMap\ShadowMap.x360.res
 C\Scenes\HUB\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\HUB\Tex\MVH_Cloud_Tracks.dds
 C\Scenes\HUB\Tex\MVH_Cloud_Tracks.xnm
@@ -11696,6 +11702,7 @@ C\Scenes\JD\JD.x360.res
 C\Scenes\JD\JD.x360.scn.bpb
 C\Scenes\JD\MiniMap\MiniMap.x360.res
 C\Scenes\JD\MiniMap\MiniMap.x360.tsf
+C\Scenes\JD\ShadowMap\ShadowMap.x360.res
 C\Scenes\JD\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\JD\Tex\MVH_Cloud_Tracks.dds
 C\Scenes\JD\Tex\MVH_Cloud_Tracks.xnm
@@ -11773,6 +11780,7 @@ C\Scenes\RB_MT\RB_MT.x360.mst
 C\Scenes\RB_MT\RB_MT.x360.mtl
 C\Scenes\RB_MT\RB_MT.x360.res
 C\Scenes\RB_MT\RB_MT.x360.scn.bpb
+C\Scenes\RB_MT\ShadowMap\ShadowMap.x360.res
 C\Scenes\RB_MT\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\RB_MT\Tex\MVH_Cloud_Tracks.dds
 C\Scenes\RB_MT\Tex\MVH_Cloud_Tracks.xnm
@@ -11843,6 +11851,7 @@ C\Scenes\RB_SM\RB_SM.x360.mst
 C\Scenes\RB_SM\RB_SM.x360.mtl
 C\Scenes\RB_SM\RB_SM.x360.res
 C\Scenes\RB_SM\RB_SM.x360.scn.bpb
+C\Scenes\RB_SM\ShadowMap\ShadowMap.x360.res
 C\Scenes\RB_SM\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\RB_SM\Tex\MVH_Cloud_Tracks.dds
 C\Scenes\RB_SM\Tex\MVH_Cloud_Tracks.xnm
@@ -13766,19 +13775,31 @@ I\UI\Tex\banner.tpl
 I\UI\Tex\load_logo.dds
 I\UI\credits.txt
 I\UI\savebanner.bin
+Res\Data\C\Act\AX01\AX01.act.ui.x360.res
 Res\Data\C\Act\AX01\AX01.act.x360.res
+Res\Data\C\Act\AX02\AX02.act.ui.x360.res
 Res\Data\C\Act\AX02\AX02.act.x360.res
+Res\Data\C\Act\AX03\AX03.act.ui.x360.res
 Res\Data\C\Act\AX03\AX03.act.x360.res
+Res\Data\C\Act\CAT01\CAT01.act.ui.x360.res
 Res\Data\C\Act\CAT01\CAT01.act.x360.res
+Res\Data\C\Act\CAT02\CAT02.act.ui.x360.res
 Res\Data\C\Act\CAT02\CAT02.act.x360.res
+Res\Data\C\Act\CAT03\CAT03.act.ui.x360.res
 Res\Data\C\Act\CAT03\CAT03.act.x360.res
+Res\Data\C\Act\CAT04\CAT04.act.ui.x360.res
 Res\Data\C\Act\CAT04\CAT04.act.x360.res
+Res\Data\C\Act\CAT05\CAT05.act.ui.x360.res
 Res\Data\C\Act\CAT05\CAT05.act.x360.res
+Res\Data\C\Act\CAT06\CAT06.act.ui.x360.res
 Res\Data\C\Act\CAT06\CAT06.act.x360.res
+Res\Data\C\Act\CAT07\CAT07.act.ui.x360.res
 Res\Data\C\Act\CAT07\CAT07.act.x360.res
+Res\Data\C\Act\CAT08\CAT08.act.ui.x360.res
 Res\Data\C\Act\CAT08\CAT08.act.x360.res
 Res\Data\C\Act\CR_01_AC\CR_01_AC.act.ui.x360.res
 Res\Data\C\Act\CR_01_AC\CR_01_AC.act.x360.res
+Res\Data\C\Act\CR_01_AX\CR_01_AX.act.ui.x360.res
 Res\Data\C\Act\CR_01_AX\CR_01_AX.act.x360.res
 Res\Data\C\Act\CR_01_BR01\CR_01_BR01.act.ui.x360.res
 Res\Data\C\Act\CR_01_BR01\CR_01_BR01.act.x360.res
@@ -13798,6 +13819,7 @@ Res\Data\C\Act\CR_01_LR02\CR_01_LR02.act.ui.x360.res
 Res\Data\C\Act\CR_01_LR02\CR_01_LR02.act.x360.res
 Res\Data\C\Act\CR_03_AC\CR_03_AC.act.ui.x360.res
 Res\Data\C\Act\CR_03_AC\CR_03_AC.act.x360.res
+Res\Data\C\Act\CR_03_AX01\CR_03_AX01.act.ui.x360.res
 Res\Data\C\Act\CR_03_AX01\CR_03_AX01.act.x360.res
 Res\Data\C\Act\CR_03_BR\CR_03_BR.act.ui.x360.res
 Res\Data\C\Act\CR_03_BR\CR_03_BR.act.x360.res
@@ -13813,6 +13835,7 @@ Res\Data\C\Act\CR_03_RR\CR_03_RR.act.ui.x360.res
 Res\Data\C\Act\CR_03_RR\CR_03_RR.act.x360.res
 Res\Data\C\Act\CR_04_AC\CR_04_AC.act.ui.x360.res
 Res\Data\C\Act\CR_04_AC\CR_04_AC.act.x360.res
+Res\Data\C\Act\CR_04_AX01\CR_04_AX01.act.ui.x360.res
 Res\Data\C\Act\CR_04_AX01\CR_04_AX01.act.x360.res
 Res\Data\C\Act\CR_04_BR\CR_04_BR.act.ui.x360.res
 Res\Data\C\Act\CR_04_BR\CR_04_BR.act.x360.res
@@ -13826,6 +13849,7 @@ Res\Data\C\Act\CR_04_RR\CR_04_RR.act.ui.x360.res
 Res\Data\C\Act\CR_04_RR\CR_04_RR.act.x360.res
 Res\Data\C\Act\CR_05_AC\CR_05_AC.act.ui.x360.res
 Res\Data\C\Act\CR_05_AC\CR_05_AC.act.x360.res
+Res\Data\C\Act\CR_05_AX01\CR_05_AX01.act.ui.x360.res
 Res\Data\C\Act\CR_05_AX01\CR_05_AX01.act.x360.res
 Res\Data\C\Act\CR_05_BR\CR_05_BR.act.ui.x360.res
 Res\Data\C\Act\CR_05_BR\CR_05_BR.act.x360.res
