@@ -1782,6 +1782,7 @@ C\Global\Anim\sh_axle.xng
 C\Global\Anim\sh_axle_popup.got
 C\Global\Anim\sh_differential.xng
 C\Global\Anim\sh_differential_popup.got
+C\Global\Anim\sh_matertire.xng
 C\Global\Anim\sh_monstershock.xng
 C\Global\Anim\sh_monstertire.xng
 C\Global\Anim\sh_monsterwheel.xng
@@ -3514,6 +3515,8 @@ C\Global\Chars\McQT\Tex\mcqT_tire_gloss.dds
 C\Global\Chars\McQT\Tex\mcqT_window_bolts.dds
 C\Global\Chars\McQT\Tex\mcqT_window_bolts.xnm
 C\Global\Chars\McQT\Tex\mcqT_window_bolts_gloss.dds
+C\Global\Chars\McQ\Anim\DefaultWheelLeft.xng
+C\Global\Chars\McQ\Anim\DefaultWheelRight.xng
 C\Global\Chars\McQ\Anim\MCQ.mcf
 C\Global\Chars\McQ\Anim\MCQ.mcf.x360.bin
 C\Global\Chars\McQ\Anim\MCQ_AIRtoLANDING.mcf
@@ -3575,6 +3578,7 @@ C\Global\Chars\McQ\Anim\mcq_Intro.mcf.x360.bin
 C\Global\Chars\McQ\Anim\mcq_RR_PL.mcf
 C\Global\Chars\McQ\Anim\mcq_RR_PL.mcf.x360.bin
 C\Global\Chars\McQ\Anim\mcq_ai.xng
+C\Global\Chars\McQ\Anim\mcq_bodymesh.xng
 C\Global\Chars\McQ\Anim\mcq_cs.xng
 C\Global\Chars\McQ\Anim\mcq_cs_00.mcf
 C\Global\Chars\McQ\Anim\mcq_cs_00.mcf.x360.bin
@@ -9238,6 +9242,7 @@ C\Global\Geo\rnc_c_banner13.xng
 C\Global\Geo\rnc_c_banner14.xng
 C\Global\Geo\rnc_c_banner15.xng
 C\Global\Geo\rnc_c_banner16.xng
+C\Global\Geo\rr_04_col.xng
 C\Global\Geo\rs_a_banner01.xng
 C\Global\Geo\rs_a_banner02.xng
 C\Global\Geo\rs_a_banner03.xng
@@ -9316,6 +9321,7 @@ C\Global\Geo\rs_mm_poilcan2.xng
 C\Global\Geo\rs_mm_ptweed.xng
 C\Global\Geo\rs_mm_pwbarrel.xng
 C\Global\Geo\rs_mm_pwhitetire.xng
+C\Global\Geo\rs_mqhq_phase05.xng
 C\Global\Geo\rs_mvh_ballbearing.xng
 C\Global\Geo\rs_mvh_barbwireball.xng
 C\Global\Geo\rs_mvh_cratea.xng
@@ -11591,6 +11597,7 @@ C\Scenes\HUB\Geo\bottom_terrain.xng
 C\Scenes\HUB\Geo\bottom_terrain_night.xng
 C\Scenes\HUB\Geo\luigis_display_extended.xng
 C\Scenes\HUB\Geo\ov_a_moon.xng
+C\Scenes\HUB\Geo\ov_a_skymodel.xng
 C\Scenes\HUB\Geo\rs_chevsigna.xng
 C\Scenes\HUB\Geo\rs_luigiwall_whole.xng
 C\Scenes\HUB\Geo\rs_mvh_barbwireball.xng
@@ -11601,6 +11608,7 @@ C\Scenes\HUB\Geo\rs_mvh_sarge_mailbox.xng
 C\Scenes\HUB\Geo\rs_mvh_sarges_flag.xng
 C\Scenes\HUB\Geo\rs_mvh_sarges_flag_night.xng
 C\Scenes\HUB\Geo\rs_mvh_tumbleweed.xng
+C\Scenes\HUB\Geo\rs_platform.xng
 C\Scenes\HUB\Geo\rs_ramones_mailbox.xng
 C\Scenes\HUB\Geo\rs_sf_drivein_speakers.xng
 C\Scenes\HUB\Geo\rs_sign45.xng
@@ -11922,6 +11930,7 @@ C\Scenes\RS\Anim\RS_FlosWingnut.mcf
 C\Scenes\RS\Anim\RS_FlosWingnut.mcf.x360.bin
 C\Scenes\RS\Anim\RS_mattress.mcf
 C\Scenes\RS\Anim\RS_mattress.mcf.x360.bin
+C\Scenes\RS\Anim\rs_fence_day.xng
 C\Scenes\RS\Col\Colgrid_RS.grid.col
 C\Scenes\RS\Eco\RR_3_4_Eco.esb
 C\Scenes\RS\Eco\RR_3_4_Eco.ess
@@ -13661,6 +13670,8 @@ E\Tex\checkerpattern.dds
 E\Tex\raceoramalogo.dds
 E\UI\Credits.txt
 E\UI\Tex\icon.tpl
+E\UI\Tex\ld_mcq.x360.lsi
+E\UI\Tex\ld_mcq_wide.x360.lsi
 E\UI\Tex\load_legal.dds
 E\UI\Tex\load_legal_w.dds
 E\UI\Tex\load_logo.dds
@@ -13699,6 +13710,8 @@ F\Loc\F_L_TRC_WII_EU.bin
 F\Loc\F_L_TRC_X360.bin
 F\UI\Credits.txt
 F\UI\Tex\icon.tpl
+F\UI\Tex\ld_mcq.x360.lsi
+F\UI\Tex\ld_mcq_wide.x360.lsi
 F\UI\Tex\load_logo_w.dds
 F\UI\savebanner.bin
 G\Audio\DIALOGUE\streams.juk.bpb
@@ -13751,6 +13764,8 @@ G\UI\Tex\Load_Screen_6_w.dds
 G\UI\Tex\Load_Screen_7.dds
 G\UI\Tex\Load_Screen_7_w.dds
 G\UI\Tex\icon.tpl
+G\UI\Tex\ld_mcq.x360.lsi
+G\UI\Tex\ld_mcq_wide.x360.lsi
 G\UI\Tex\load_legal.dds
 G\UI\Tex\load_legal_w.dds
 G\UI\Tex\load_logo_w.dds
@@ -13772,6 +13787,8 @@ I\Loc\I_L_TRC_WII.bin
 I\Loc\I_L_TRC_WII_EU.bin
 I\Loc\I_L_TRC_X360.bin
 I\UI\Tex\banner.tpl
+I\UI\Tex\ld_mcq.x360.lsi
+I\UI\Tex\ld_mcq_wide.x360.lsi
 I\UI\Tex\load_logo.dds
 I\UI\credits.txt
 I\UI\savebanner.bin
@@ -14069,6 +14086,8 @@ S\UI\Tex\Load_Screen_6_w.dds
 S\UI\Tex\Load_Screen_7.dds
 S\UI\Tex\Load_Screen_7_w.dds
 S\UI\Tex\icon.tpl
+S\UI\Tex\ld_mcq.x360.lsi
+S\UI\Tex\ld_mcq_wide.x360.lsi
 S\UI\Tex\load_legal.dds
 S\UI\Tex\load_legal_w.dds
 S\UI\Tex\load_logo_w.dds
