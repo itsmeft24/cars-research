@@ -10832,6 +10832,9 @@ C\Scenes\CR_01\Anim\blimp.mcf.x360.bin
 C\Scenes\CR_01\Anim\blimp.xng
 C\Scenes\CR_01\CR_01.E.x360.mst.bin
 C\Scenes\CR_01\CR_01.F.x360.mst.bin
+C\Scenes\CR_01\CR_01.G.x360.mst.bin
+C\Scenes\CR_01\CR_01.I.x360.mst.bin
+C\Scenes\CR_01\CR_01.S.x360.mst.bin
 C\Scenes\CR_01\CR_01.aud.bpb
 C\Scenes\CR_01\CR_01.toy.bpb
 C\Scenes\CR_01\CR_01.trk
@@ -10948,6 +10951,9 @@ C\Scenes\CR_03\Anim\ferris_wheel.mcf.x360.bin
 C\Scenes\CR_03\Anim\ferris_wheel.xng
 C\Scenes\CR_03\CR_03.E.x360.mst.bin
 C\Scenes\CR_03\CR_03.F.x360.mst.bin
+C\Scenes\CR_03\CR_03.G.x360.mst.bin
+C\Scenes\CR_03\CR_03.I.x360.mst.bin
+C\Scenes\CR_03\CR_03.S.x360.mst.bin
 C\Scenes\CR_03\CR_03.aud.bpb
 C\Scenes\CR_03\CR_03.toy.bpb
 C\Scenes\CR_03\CR_03.x360.mst
@@ -11056,6 +11062,9 @@ C\Scenes\CR_03\Tex\skyclouds.dds
 C\Scenes\CR_03\Tex\skyclouds.xnm
 C\Scenes\CR_04\CR_04.E.x360.mst.bin
 C\Scenes\CR_04\CR_04.F.x360.mst.bin
+C\Scenes\CR_04\CR_04.G.x360.mst.bin
+C\Scenes\CR_04\CR_04.I.x360.mst.bin
+C\Scenes\CR_04\CR_04.S.x360.mst.bin
 C\Scenes\CR_04\CR_04.aud.bpb
 C\Scenes\CR_04\CR_04.toy.bpb
 C\Scenes\CR_04\CR_04.x360.mst
@@ -11185,6 +11194,9 @@ C\Scenes\CR_05\Anim\robotarm01.mcf.x360.bin
 C\Scenes\CR_05\Anim\robotarm01.xng
 C\Scenes\CR_05\CR_05.E.x360.mst.bin
 C\Scenes\CR_05\CR_05.F.x360.mst.bin
+C\Scenes\CR_05\CR_05.G.x360.mst.bin
+C\Scenes\CR_05\CR_05.I.x360.mst.bin
+C\Scenes\CR_05\CR_05.S.x360.mst.bin
 C\Scenes\CR_05\CR_05.aud.bpb
 C\Scenes\CR_05\CR_05.toy.bpb
 C\Scenes\CR_05\CR_05.x360.mst
@@ -11301,6 +11313,9 @@ C\Scenes\CR_05\eco\pc_sf_saguaro_b.xng
 C\Scenes\CR_05\eco\pc_sf_saguaro_c.xng
 C\Scenes\CT_MD\CT_MD.E.x360.mst.bin
 C\Scenes\CT_MD\CT_MD.F.x360.mst.bin
+C\Scenes\CT_MD\CT_MD.G.x360.mst.bin
+C\Scenes\CT_MD\CT_MD.I.x360.mst.bin
+C\Scenes\CT_MD\CT_MD.S.x360.mst.bin
 C\Scenes\CT_MD\CT_MD.aud.bpb
 C\Scenes\CT_MD\CT_MD.toy.bpb
 C\Scenes\CT_MD\CT_MD.x360.mst
@@ -11362,6 +11377,9 @@ C\Scenes\CT_MD\Tex\skyclouds.dds
 C\Scenes\CT_MD\Tex\skyclouds.xnm
 C\Scenes\CT_SM\CT_SM.E.x360.mst.bin
 C\Scenes\CT_SM\CT_SM.F.x360.mst.bin
+C\Scenes\CT_SM\CT_SM.G.x360.mst.bin
+C\Scenes\CT_SM\CT_SM.I.x360.mst.bin
+C\Scenes\CT_SM\CT_SM.S.x360.mst.bin
 C\Scenes\CT_SM\CT_SM.aud.bpb
 C\Scenes\CT_SM\CT_SM.toy.bpb
 C\Scenes\CT_SM\CT_SM.x360.mst
@@ -11386,6 +11404,9 @@ C\Scenes\CT_SM\tex\skyclouds.dds
 C\Scenes\CT_SM\tex\skyclouds.xnm
 C\Scenes\CT_TD\CT_TD.E.x360.mst.bin
 C\Scenes\CT_TD\CT_TD.F.x360.mst.bin
+C\Scenes\CT_TD\CT_TD.G.x360.mst.bin
+C\Scenes\CT_TD\CT_TD.I.x360.mst.bin
+C\Scenes\CT_TD\CT_TD.S.x360.mst.bin
 C\Scenes\CT_TD\CT_TD.aud.bpb
 C\Scenes\CT_TD\CT_TD.toy.bpb
 C\Scenes\CT_TD\CT_TD.x360.mst
@@ -11421,6 +11442,9 @@ C\Scenes\CT_TD\tex\skyclouds.dds
 C\Scenes\CT_TD\tex\skyclouds.xnm
 C\Scenes\FE\FE.E.x360.mst.bin
 C\Scenes\FE\FE.F.x360.mst.bin
+C\Scenes\FE\FE.G.x360.mst.bin
+C\Scenes\FE\FE.I.x360.mst.bin
+C\Scenes\FE\FE.S.x360.mst.bin
 C\Scenes\FE\FE.aud.bpb
 C\Scenes\FE\FE.poi.bpb
 C\Scenes\FE\FE.toy.bpb
@@ -11612,6 +11636,9 @@ C\Scenes\HUB\Geo\skyclouds.xng
 C\Scenes\HUB\Geo\tt_skymodel.xng
 C\Scenes\HUB\HUB.E.x360.mst.bin
 C\Scenes\HUB\HUB.F.x360.mst.bin
+C\Scenes\HUB\HUB.G.x360.mst.bin
+C\Scenes\HUB\HUB.I.x360.mst.bin
+C\Scenes\HUB\HUB.S.x360.mst.bin
 C\Scenes\HUB\HUB.aud.bpb
 C\Scenes\HUB\HUB.toy.bpb
 C\Scenes\HUB\HUB.x360.mst
@@ -11693,6 +11720,9 @@ C\Scenes\JD\Geo\rs_skymodel.xng
 C\Scenes\JD\Geo\skyclouds.xng
 C\Scenes\JD\JD.E.x360.mst.bin
 C\Scenes\JD\JD.F.x360.mst.bin
+C\Scenes\JD\JD.G.x360.mst.bin
+C\Scenes\JD\JD.I.x360.mst.bin
+C\Scenes\JD\JD.S.x360.mst.bin
 C\Scenes\JD\JD.aud.bpb
 C\Scenes\JD\JD.toy.bpb
 C\Scenes\JD\JD.x360.mst
@@ -11773,6 +11803,9 @@ C\Scenes\RB_MT\Geo\rs_skymodel.xng
 C\Scenes\RB_MT\Geo\skyclouds.xng
 C\Scenes\RB_MT\RB_MT.E.x360.mst.bin
 C\Scenes\RB_MT\RB_MT.F.x360.mst.bin
+C\Scenes\RB_MT\RB_MT.G.x360.mst.bin
+C\Scenes\RB_MT\RB_MT.I.x360.mst.bin
+C\Scenes\RB_MT\RB_MT.S.x360.mst.bin
 C\Scenes\RB_MT\RB_MT.aud.bpb
 C\Scenes\RB_MT\RB_MT.toy.bpb
 C\Scenes\RB_MT\RB_MT.x360.mst
@@ -11844,6 +11877,9 @@ C\Scenes\RB_SM\Geo\rs_skymodel.xng
 C\Scenes\RB_SM\Geo\skyclouds.xng
 C\Scenes\RB_SM\RB_SM.E.x360.mst.bin
 C\Scenes\RB_SM\RB_SM.F.x360.mst.bin
+C\Scenes\RB_SM\RB_SM.G.x360.mst.bin
+C\Scenes\RB_SM\RB_SM.I.x360.mst.bin
+C\Scenes\RB_SM\RB_SM.S.x360.mst.bin
 C\Scenes\RB_SM\RB_SM.aud.bpb
 C\Scenes\RB_SM\RB_SM.toy.bpb
 C\Scenes\RB_SM\RB_SM.x360.mst
