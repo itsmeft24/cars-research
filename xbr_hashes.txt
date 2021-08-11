@@ -12127,6 +12127,7 @@ C\Scenes\HUB\Anim\RS_FlosFence_A_Motion_B.got
 C\Scenes\HUB\Anim\RS_FlosFence_M.gol
 C\Scenes\HUB\Anim\RS_FlosFence_M.mcf
 C\Scenes\HUB\Anim\RS_FlosFence_M.mcf.x360.bin
+C\Scenes\HUB\Anim\RS_FlosFence_M.xng
 C\Scenes\HUB\Anim\RS_FlosFence_M_Motion_A.got
 C\Scenes\HUB\Anim\RS_FlosFence_M_Motion_B.got
 C\Scenes\HUB\Anim\RS_FlosWingnut.got
