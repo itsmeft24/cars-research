@@ -21,14 +21,14 @@ Size of Value String data at 0x1c (4 bytes)
 Table of Labels and Children (Definitions)
 
 Label Definition - 
-4 bytes of ??
+A DJB-2 Hash of the corresponding String Label
 Offset to the corrseponding Label (4 bytes)
 Flag (Is 0xFF most of the time, otherwise its an integer that should be concatenated to the Label name. Ex: Song 1) (2 bytes)
 The number of children (2 bytes)
 Index for first option in a Label (4 bytes)
 
 Option Definition -
-4 Bytes of ??
+A DJB-2 Hash of the corresponding String Label
 
 If the file is from Race-O-Rama, then the flag will be the first byte in the Option offset. Otherwise, it will be after the offset.
 
