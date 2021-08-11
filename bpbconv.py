@@ -51,7 +51,7 @@ for x in range(numlabels):
     entry_data = struct.unpack(PARAM_ENTRY, param_block.read(0x10))
     param_block.seek(x*16+0x20)
 
-    UNKNOWN = entry_data[0]
+    hash = entry_data[0]
     string_offset = entry_data[1]
     flag = entry_data[2]
     number_of_children = entry_data[3]
@@ -75,7 +75,7 @@ for x in range(numlabels):
         
         param_block.seek(offset_seek+y*16)
         entry_data = struct.unpack(PARAM_ENTRY, param_block.read(0x10))
-        UNKNOWN = entry_data[0]
+        hash = entry_data[0]
         string_offset = entry_data[1]
 
         param_block.seek(offset_seek+4+y*16)
