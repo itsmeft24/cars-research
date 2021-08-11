@@ -1,0 +1,17 @@
+The Xbox 360/Playstation 3 Resource Archive
+
+This is a fairly standard archive that contains most of the files in the Xbox 360 and PS3 versions of Race-O-Rama.
+
+Header:
+u32: Version (This document only goes over version 3 of the format.)
+u32: Number of files
+u32: unk
+u32: unk2
+u32: Size of File Table
+4 bytes of padding
+
+Table Entry:
+u32: A DJB-2 hash of the file path. On Xbox 360, the path is formatted with backslashes, and is entirely lowercase. On PS3, the path is formatted with forwardslashes, and is also lowercase.
+u32: The size of the file.
+u32: The offset of the file in the archive divided by 0x800. (To undo this either multiply 0x800 or shift left 11 times.) On PS3 however, the offset is absoulte and does not need to be multiplied by 0x800.
+The reason why offsets in this format are multiples of 0x800 or need to be multiplied by 0x800 to be used is because this format pads each file by a multiple of 0x800. This is especially common in games that run on devices with disc drives.
