@@ -12,12 +12,18 @@ def readString(file):
             return string.decode('ascii')
         string = string + str
 
+def djb_hash(str):
+    str = str.lower()
+    hash = 5381
+    for x in range(len(str)):
+        hash = (((hash << 5) + hash) + ord(str[x]))& 0xFFFFFFFF
+    return hash 
+
 param_block = open(sys.argv[1], "rb")
 
 if param_block.read(0x6) == b"ZLIBME":
     param_block.seek(0x10)
     param_block = io.BytesIO(zlib.decompress(param_block.read()))
-
 param_block.seek(0)
 param_header = struct.unpack(HEADER, param_block.read(32))
 
@@ -44,6 +50,18 @@ else:
     exit(-1)
 
 output = open(sys.argv[2], "w")
+param_block.seek(labelstrings_offset)
+
+hash_labels = {}
+
+labels = param_block.read(labelstrings_size).split(b"\x00")
+param_block.seek(optionstrings_offset)
+labels = labels + param_block.read(optionstrings_size).split(b"\x00")
+
+for x in range(len(labels)):
+    hash_labels[djb_hash(labels[x].decode())] = labels[x].decode()
+
+del labels
 
 for x in range(numlabels):
     param_block.seek(x*16+0x20)#Seek to the offset of the definition and unpack it into a tuple.
@@ -51,31 +69,31 @@ for x in range(numlabels):
     entry_data = struct.unpack(PARAM_ENTRY, param_block.read(0x10))
     param_block.seek(x*16+0x20)
 
-    hash = entry_data[0]
+    HASH = entry_data[0]
     string_offset = entry_data[1]
     flag = entry_data[2]
     number_of_children = entry_data[3]
     first_option_index = entry_data[4]
-
-    param_block.seek(string_offset+labelstrings_offset)
-    name = readString(param_block)
-    param_block.seek(x*16+0x20)
-    if flag == 65535:# Is a "Normal" Label Definition?
-        if x == 0: # If this is the first label, do not add a newline before the label header.
+    
+    name = hash_labels[HASH]
+    
+    if flag == 65535:# Is an indexed Parent?
+        if x == 0: # Check if its not the first loop iteration, and add a newline at the beginning of the parent.
             output.write("["+name+"]\n")
         else:
             output.write("\n["+name+"]\n")
     else:
-        if x == 0:
+        if x == 0: # Check if its not the first loop iteration, and add a newline at the beginning of the parent.
             output.write("["+name+str(flag)+"]\n")
         else:
             output.write("\n["+name+str(flag)+"]\n")
+    
     offset_seek = (first_option_index)*16+childdef_offset
     for y in range(number_of_children):
         
         param_block.seek(offset_seek+y*16)
         entry_data = struct.unpack(PARAM_ENTRY, param_block.read(0x10))
-        hash = entry_data[0]
+        HASH = entry_data[0]
         string_offset = entry_data[1]
 
         param_block.seek(offset_seek+4+y*16)
@@ -86,8 +104,7 @@ for x in range(numlabels):
         
         flag = entry_data[2]
         value_offset = entry_data[4]
-        param_block.seek(string_offset+labelstrings_offset)
-        name = readString(param_block)
+        name = hash_labels[HASH]
         param_block.seek(offset_seek+y*16)
         
         if RACE_O_RAMA:
@@ -149,4 +166,4 @@ for x in range(numlabels):
                 value = str(struct.unpack('>i', param_block.read(4))[0])
                 output.write(name+"="+value+"\n")
             else:
-                print(name+" UNKNOWN_FLAG:"+hex(flag)+" Please report this file to @data.arc#5576 on Discord!")
+                print(name+" UNKNOWN_FLAG:"+hex(flag)+" Please report this file to @itsmeft24#5576 on Discord!")
