@@ -11762,6 +11762,7 @@ C\Scenes\CR_04\Tex\SunFlare33.xnm
 C\Scenes\CR_04\Tex\fluffyclouds.dds
 C\Scenes\CR_04\Tex\fluffyclouds.xnm
 C\Scenes\CR_04\Tex\fluffycloudsB.xnm
+C\Scenes\CR_04\Tex\manholecover.xnm
 C\Scenes\CR_04\Tex\skyclouds.dds
 C\Scenes\CR_04\Tex\skyclouds.xnm
 C\Scenes\CR_05\Anim\blimp.got
@@ -12153,6 +12154,7 @@ C\Scenes\HUB\Anim\rs_fence_day.xng
 C\Scenes\HUB\Anim\rs_fence_night.xng
 C\Scenes\HUB\Anim\rs_flosfence_a.xng
 C\Scenes\HUB\Anim\rs_floswingnut.xng
+C\Scenes\HUB\Anim\rs_mattress.xng
 C\Scenes\HUB\Col\colGrid_Master.grid.col
 C\Scenes\HUB\Eco\HUB_Eco_BB.dds
 C\Scenes\HUB\Eco\HUB_Eco_BB.xnm
@@ -14473,14 +14475,21 @@ C\UI\Tex\ps2_Start_black.xnm
 C\UI\Tex\ps2_Triangle_button.xnm
 C\UI\Tex\ps2_X_button.dds
 C\UI\Tex\ps2_X_button.xnm
+C\UI\Tex\ps3_6Axis_sturn.xnm
+C\UI\Tex\ps3_6Axis_turn.xnm
 C\UI\Tex\ps3_6axis_jump.atd
+C\UI\Tex\ps3_6axis_jump.xnm
 C\UI\Tex\ps3_6axis_pturn.atd
+C\UI\Tex\ps3_6axis_pturn.xnm
 C\UI\Tex\ps3_6axis_sjump.atd
 C\UI\Tex\ps3_6axis_spin.atd
+C\UI\Tex\ps3_6axis_spin.xnm
 C\UI\Tex\ps3_6axis_sturn.atd
 C\UI\Tex\ps3_6axis_tractor.atd
+C\UI\Tex\ps3_6axis_tractor.xnm
 C\UI\Tex\ps3_6axis_turn.atd
 C\UI\Tex\ps3_backwards.atd
+C\UI\Tex\ps3_backwards.xnm
 C\UI\Tex\ps3_control_001.dds
 C\UI\Tex\ps3_control_001.xnm
 C\UI\Tex\ps3_control_002.dds
