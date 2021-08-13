@@ -5322,6 +5322,9 @@ C\Global\Chars\McQ\Tex\mcq_hood17_E3.xnm
 C\Global\Chars\McQ\Tex\mcq_hood17_F.dds
 C\Global\Chars\McQ\Tex\mcq_hood17_F.xnm
 C\Global\Chars\McQ\Tex\mcq_hood17_gloss.dds
+C\Global\Chars\McQ\Tex\mcq_hood2a.xnm
+C\Global\Chars\McQ\Tex\mcq_hood2b.xnm
+C\Global\Chars\McQ\Tex\mcq_hood3a.xnm
 C\Global\Chars\McQ\Tex\mcq_side01.dds
 C\Global\Chars\McQ\Tex\mcq_side01.xnm
 C\Global\Chars\McQ\Tex\mcq_side01_C1.dds
