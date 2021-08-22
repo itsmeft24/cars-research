@@ -2563,6 +2563,7 @@ C\Global\Chars\Can\Tex\Can_Tire.xnm
 C\Global\Chars\Can\Tex\Can_Tire_Alpha.xnm
 C\Global\Chars\Can\Tex\Can_glass.dds
 C\Global\Chars\Can\Tex\Can_glass.xnm
+C\Global\Chars\Can\Tex\Can_glass_gloss.dds
 C\Global\Chars\Can\Tex\Can_tire.dds
 C\Global\Chars\Can\Tex\Can_tire_gloss.dds
 C\Global\Chars\Can\Tex\G_Blue_Eye.dds
@@ -3381,6 +3382,7 @@ C\Global\Chars\Mack\Tex\Mack_ramp_body.dds
 C\Global\Chars\Mack\Tex\Mack_ramp_body.xnm
 C\Global\Chars\Mack\Tex\Mack_tire.dds
 C\Global\Chars\Mack\Tex\Mack_tire.xnm
+C\Global\Chars\Mack\Tex\mack_boxes_gloss.dds
 C\Global\Chars\Mack\Tex\mack_tire_rim.xnm
 C\Global\Chars\Mack\car00.phy.bpb
 C\Global\Chars\Mack\mack_info.dat.bpb
@@ -5325,6 +5327,7 @@ C\Global\Chars\McQ\Tex\mcq_hood17_gloss.dds
 C\Global\Chars\McQ\Tex\mcq_hood2a.xnm
 C\Global\Chars\McQ\Tex\mcq_hood2b.xnm
 C\Global\Chars\McQ\Tex\mcq_hood3a.xnm
+C\Global\Chars\McQ\Tex\mcq_rim_alpha.xnm
 C\Global\Chars\McQ\Tex\mcq_side01.dds
 C\Global\Chars\McQ\Tex\mcq_side01.xnm
 C\Global\Chars\McQ\Tex\mcq_side01_C1.dds
@@ -6644,6 +6647,7 @@ C\Global\Chars\McQ\Tex\mcq_wheel03.dds
 C\Global\Chars\McQ\Tex\mcq_wheel03_blur.dds
 C\Global\Chars\McQ\Tex\mcq_wheel03_gloss.dds
 C\Global\Chars\McQ\Tex\mcq_wheel03a.xnm
+C\Global\Chars\McQ\Tex\mcq_wheel03a_blur.dds
 C\Global\Chars\McQ\Tex\mcq_wheel03a_blur.xnm
 C\Global\Chars\McQ\Tex\mcq_wheel03b.xnm
 C\Global\Chars\McQ\Tex\mcq_wheel03b_blur.xnm
@@ -6900,6 +6904,7 @@ C\Global\Chars\Mia\Anim\MIA_EX_AI_S.mcf.x360.bin
 C\Global\Chars\Mia\Anim\MIA_RR_PL.mcf
 C\Global\Chars\Mia\Anim\MIA_RR_PL.mcf.x360.bin
 C\Global\Chars\Mia\Anim\Mia.xng
+C\Global\Chars\Mia\Anim\Mia_Cat.mcf.x360.bin
 C\Global\Chars\Mia\Anim\Mia_EX_PL.mcf
 C\Global\Chars\Mia\Anim\Mia_EX_PL.mcf.x360.bin
 C\Global\Chars\Mia\Anim\Mia_ai.xng
@@ -7031,6 +7036,7 @@ C\Global\Chars\Mtd\Tex\Mtd_Bodymouth.xnm
 C\Global\Chars\Mtd\Tex\Mtd_Eye.xnm
 C\Global\Chars\Mtd\Tex\Mtd_FlagB.xnm
 C\Global\Chars\Mtd\Tex\Mtd_Glass.xnm
+C\Global\Chars\Mtd\Tex\mat_glass.xnm
 C\Global\Chars\Mtd\car00.phy.bpb
 C\Global\Chars\Mtg\Anim\MTG_SM_TRANS.mcf
 C\Global\Chars\Mtg\Anim\MTG_SM_TRANS.mcf.x360.bin
@@ -7372,6 +7378,7 @@ C\Global\Chars\Ramp\car00.phy.bpb
 C\Global\Chars\Ramp\car00particles.ini
 C\Global\Chars\Ramp\tiresmoke.emt
 C\Global\Chars\Ramp\tiresmoke.emt.bpb
+C\Global\Chars\RoF\Tex\rof_tire_gloss.dds
 C\Global\Chars\SCA\Anim\SCA.mcf
 C\Global\Chars\SCA\Anim\SCA.mcf.x360.bin
 C\Global\Chars\SCA\Anim\SCA_CS.mcf
@@ -8319,6 +8326,7 @@ C\Global\Chars\TiaS\Tex\TiaS_Props.xnm
 C\Global\Chars\TiaS\Tex\TiaS_Tire.dds
 C\Global\Chars\TiaS\Tex\TiaS_Tire.xnm
 C\Global\Chars\TiaS\Tex\TiaS_Tire_Rim.xnm
+C\Global\Chars\TiaS\Tex\tiaS_tire_gloss.dds
 C\Global\Chars\TiaT\Anim\TIAT_EX_AI_D.mcf
 C\Global\Chars\TiaT\Anim\TIAT_EX_AI_D.mcf.x360.bin
 C\Global\Chars\TiaT\Anim\TIAT_EX_AI_S.mcf
@@ -8370,6 +8378,7 @@ C\Global\Chars\Tia\Anim\Tia_2_0a.mcf
 C\Global\Chars\Tia\Anim\Tia_2_0a.mcf.x360.bin
 C\Global\Chars\Tia\Anim\Tia_2_0a2.mcf
 C\Global\Chars\Tia\Anim\Tia_2_0a2.mcf.x360.bin
+C\Global\Chars\Tia\Anim\Tia_Cat.mcf.x360.bin
 C\Global\Chars\Tia\Anim\Tia_RR_AI.mcf
 C\Global\Chars\Tia\Anim\Tia_RR_AI.mcf.x360.bin
 C\Global\Chars\Tia\Anim\Tia_ai.xng
@@ -12267,6 +12276,7 @@ C\Scenes\HUB\ShadowMap\ShadowMap.x360.tsf
 C\Scenes\HUB\Skies\RS_Noon.x360.cub
 C\Scenes\HUB\Tex\MVH_Cloud_Tracks.dds
 C\Scenes\HUB\Tex\MVH_Cloud_Tracks.xnm
+C\Scenes\HUB\Tex\RS_Day_WorldShadowMap.dds
 C\Scenes\HUB\Tex\RS_FlosFence.dds
 C\Scenes\HUB\Tex\RS_FlosFence.xnm
 C\Scenes\HUB\Tex\RS_MVH_DriveIn_Planks.dds
@@ -13113,9 +13123,12 @@ C\UI\Anim\FE_Credits.bxml
 C\UI\Anim\FE_DifficultyMenu.bxml
 C\UI\Anim\FE_EditProfileMenu.bxml
 C\UI\Anim\FE_EventSelection.bxml
+C\UI\Anim\FE_JoinGamePrompt.bxml
 C\UI\Anim\FE_MainMenu.bxml
 C\UI\Anim\FE_MainMenuPrompts.bxml
 C\UI\Anim\FE_Options.bxml
+C\UI\Anim\FE_Options_PS2.bxml
+C\UI\Anim\FE_Options_ps3.bxml
 C\UI\Anim\FE_PhotoShootGallery.bxml
 C\UI\Anim\FE_ProfileButtons.bxml
 C\UI\Anim\FE_ProfileMenu.bxml
@@ -13187,6 +13200,7 @@ C\UI\Anim\RMCursor.bxml
 C\UI\Anim\RaceHUD.bxml
 C\UI\Anim\RaceHUD_2P.bxml
 C\UI\Anim\RamoneGarage.bxml
+C\UI\Anim\ReselectProfileSlot.bxml
 C\UI\Anim\Results.bxml
 C\UI\Anim\Results_FindRetrieve.bxml
 C\UI\Anim\Results_FindTire.bxml
@@ -13248,6 +13262,7 @@ C\UI\Components\MultiSelectBox.lui.bin
 C\UI\Components\UIBarGraph.lui.bin
 C\UI\Components\UIContainer.lui.bin
 C\UI\Components\UIIcon.lui.bin
+C\UI\Components\UILayer.lui.bin
 C\UI\Components\UIText.lui.bin
 C\UI\Components\UITextBox.lui.bin
 C\UI\Countdown.lui.bin
@@ -13380,9 +13395,12 @@ C\UI\FE_Credits.lui.bin
 C\UI\FE_DifficultyMenu.lui.bin
 C\UI\FE_EditProfileMenu.lui.bin
 C\UI\FE_EventSelection.lui.bin
+C\UI\FE_JoinGamePrompt.lui.bin
 C\UI\FE_MainMenu.lui.bin
 C\UI\FE_MainMenuPrompts.lui.bin
 C\UI\FE_Options.lui.bin
+C\UI\FE_Options_PS2.lui.bin
+C\UI\FE_Options_ps3.lui.bin
 C\UI\FE_PhotoShootGallery.lui.bin
 C\UI\FE_ProfileButtons.lui.bin
 C\UI\FE_ProfileMenu.lui.bin
@@ -13468,6 +13486,7 @@ C\UI\RaceHUD.lui.bin
 C\UI\RaceHUD_2P.lui.bin
 C\UI\RamoneGarage.lui.bin
 C\UI\Records_Matrix.txt
+C\UI\ReselectProfileSlot.lui.bin
 C\UI\Results.lui.bin
 C\UI\Results_FindRetrieve.lui.bin
 C\UI\Results_FindTire.lui.bin
@@ -14466,6 +14485,7 @@ C\UI\Tex\ps2_Dpad.xnm
 C\UI\Tex\ps2_L1_trigger.dds
 C\UI\Tex\ps2_L1_trigger.xnm
 C\UI\Tex\ps2_L2_trigger.xnm
+C\UI\Tex\ps2_L_stick.dds
 C\UI\Tex\ps2_R1_trigger.xnm
 C\UI\Tex\ps2_R2_trigger.dds
 C\UI\Tex\ps2_R2_trigger.xnm
