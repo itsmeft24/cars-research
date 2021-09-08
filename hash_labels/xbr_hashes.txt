@@ -2941,6 +2941,7 @@ C\Global\Chars\Fred\Tex\Fred_Tire.xnm
 C\Global\Chars\Fred\Tex\Fred_tire.dds
 C\Global\Chars\Fred\Tex\Fred_tire_gloss.dds
 C\Global\Chars\Fred\Tex\fred_body_alpha.xnm
+C\Global\Chars\Fred\Tex\fred_glass_gloss.dds
 C\Global\Chars\Fred\Tex\fred_wheel.xnm
 C\Global\Chars\GUI\Tex\Gui_eye_hires.xnm
 C\Global\Chars\GUI\Tex\Gui_glass_gloss.dds
@@ -11118,6 +11119,16 @@ C\Global\Tex\RS_cozycone_AObuilding_03.xnm
 C\Global\Tex\RS_cozycone_main.dds
 C\Global\Tex\RS_cozyumbrella.xnm
 C\Global\Tex\RS_cozyumbrella_poles.xnm
+C\Global\Tex\RS_jfsidewalkA.dds
+C\Global\Tex\RS_jfsidewalkA.xnm
+C\Global\Tex\RS_jfsidewalkB.dds
+C\Global\Tex\RS_jfsidewalkB.xnm
+C\Global\Tex\RS_jfsidewalkD.dds
+C\Global\Tex\RS_jfsidewalkD.xnm
+C\Global\Tex\RS_jfsidewalkE.dds
+C\Global\Tex\RS_jfsidewalkE.xnm
+C\Global\Tex\RS_jfsidewalkF.dds
+C\Global\Tex\RS_jfsidewalkF.xnm
 C\Global\Tex\RaceChase_target_center.dds
 C\Global\Tex\RaceChase_target_center.xnm
 C\Global\Tex\RaceChase_target_outer_ring.dds
@@ -13975,7 +13986,6 @@ C\UI\Tex\hud_trophies_silver.dds
 C\UI\Tex\hud_trophies_silver.xnm
 C\UI\Tex\icon_BAR_a.dds
 C\UI\Tex\icon_BAR_a.xnm
-C\UI\Tex\icon_Bar_a.dds
 C\UI\Tex\icon_Buf_a.dds
 C\UI\Tex\icon_Buf_a.xnm
 C\UI\Tex\icon_CHI_a.dds
@@ -13986,7 +13996,6 @@ C\UI\Tex\icon_CRP_a.dds
 C\UI\Tex\icon_CRP_a.xnm
 C\UI\Tex\icon_CSPAT_a.dds
 C\UI\Tex\icon_CSPAT_a.xnm
-C\UI\Tex\icon_Cle_a.dds
 C\UI\Tex\icon_Emma_a.dds
 C\UI\Tex\icon_Emma_a.xnm
 C\UI\Tex\icon_FIL_a.dds
@@ -13996,10 +14005,6 @@ C\UI\Tex\icon_FLE_a.xnm
 C\UI\Tex\icon_FLO_a.dds
 C\UI\Tex\icon_FLO_a.xnm
 C\UI\Tex\icon_FRA_a.dds
-C\UI\Tex\icon_Fil_a.dds
-C\UI\Tex\icon_Fle_a.dds
-C\UI\Tex\icon_Flo_a.dds
-C\UI\Tex\icon_Fra_a.dds
 C\UI\Tex\icon_Fred_a.dds
 C\UI\Tex\icon_Fred_a.xnm
 C\UI\Tex\icon_GER_a.dds
@@ -14010,11 +14015,8 @@ C\UI\Tex\icon_GIN_a.dds
 C\UI\Tex\icon_GIN_a.xnm
 C\UI\Tex\icon_GUI_a.dds
 C\UI\Tex\icon_GUI_a.xnm
-C\UI\Tex\icon_Ger_a.dds
-C\UI\Tex\icon_Gin_a.dds
 C\UI\Tex\icon_Gio_a.dds
 C\UI\Tex\icon_Gio_a.xnm
-C\UI\Tex\icon_Gui_a.dds
 C\UI\Tex\icon_HUD_a.dds
 C\UI\Tex\icon_HUD_a.xnm
 C\UI\Tex\icon_Hiro_a.dds
@@ -14027,11 +14029,8 @@ C\UI\Tex\icon_LIZ_a.dds
 C\UI\Tex\icon_LIZ_a.xnm
 C\UI\Tex\icon_LUI_a.dds
 C\UI\Tex\icon_LUI_a.xnm
-C\UI\Tex\icon_Len_a.dds
 C\UI\Tex\icon_Lew_a.dds
 C\UI\Tex\icon_Lew_a.xnm
-C\UI\Tex\icon_Liz_a.dds
-C\UI\Tex\icon_Lui_a.dds
 C\UI\Tex\icon_MATM_a.dds
 C\UI\Tex\icon_MATM_a.xnm
 C\UI\Tex\icon_MATM_b.dds
@@ -14048,7 +14047,6 @@ C\UI\Tex\icon_MODT_a.dds
 C\UI\Tex\icon_MODT_a.xnm
 C\UI\Tex\icon_Mach_a.dds
 C\UI\Tex\icon_Mach_a.xnm
-C\UI\Tex\icon_Mat_a.dds
 C\UI\Tex\icon_McQAV_a.dds
 C\UI\Tex\icon_McQAV_a.xnm
 C\UI\Tex\icon_McQMP_a.dds
@@ -14057,8 +14055,6 @@ C\UI\Tex\icon_McQSC_a.dds
 C\UI\Tex\icon_McQSC_a.xnm
 C\UI\Tex\icon_McQWB_a.dds
 C\UI\Tex\icon_McQWB_a.xnm
-C\UI\Tex\icon_McQ_a.dds
-C\UI\Tex\icon_Mia_a.dds
 C\UI\Tex\icon_Mike_a.dds
 C\UI\Tex\icon_Mike_a.xnm
 C\UI\Tex\icon_Otto_a.dds
@@ -14067,7 +14063,6 @@ C\UI\Tex\icon_Phil_a.dds
 C\UI\Tex\icon_Phil_a.xnm
 C\UI\Tex\icon_RAM_a.dds
 C\UI\Tex\icon_RAM_a.xnm
-C\UI\Tex\icon_Ram_a.dds
 C\UI\Tex\icon_SAR_a.dds
 C\UI\Tex\icon_SAR_a.xnm
 C\UI\Tex\icon_SHER_a.dds
@@ -14078,8 +14073,6 @@ C\UI\Tex\icon_SON_a.dds
 C\UI\Tex\icon_SON_a.xnm
 C\UI\Tex\icon_STAN_a.dds
 C\UI\Tex\icon_STAN_a.xnm
-C\UI\Tex\icon_Sar_a.dds
-C\UI\Tex\icon_Son_a.dds
 C\UI\Tex\icon_SulM_a.dds
 C\UI\Tex\icon_SulM_a.xnm
 C\UI\Tex\icon_Sven_a.dds
@@ -14090,10 +14083,8 @@ C\UI\Tex\icon_TJ_a.dds
 C\UI\Tex\icon_TJ_a.xnm
 C\UI\Tex\icon_TRAC_a.dds
 C\UI\Tex\icon_TRAC_a.xnm
-C\UI\Tex\icon_Tia_a.dds
 C\UI\Tex\icon_VIN_a.dds
 C\UI\Tex\icon_VIN_a.xnm
-C\UI\Tex\icon_Vin_a.dds
 C\UI\Tex\icon_Yuri_a.xnm
 C\UI\Tex\icon_ZEKE_a.dds
 C\UI\Tex\icon_ZEKE_a.xnm
@@ -14522,7 +14513,6 @@ C\UI\Tex\ps2_X_button.xnm
 C\UI\Tex\ps2_circle_button.dds
 C\UI\Tex\ps2_square_button.dds
 C\UI\Tex\ps2_triangle_button.dds
-C\UI\Tex\ps2_x_button.dds
 C\UI\Tex\ps3_6Axis_sturn.xnm
 C\UI\Tex\ps3_6Axis_turn.xnm
 C\UI\Tex\ps3_6axis_jump.atd
@@ -14578,6 +14568,10 @@ C\UI\Tex\wii_remote_control_pad_up.atg
 C\UI\Tex\wii_remote_steer.atg
 C\UI\Tex\wii_remote_twist.atg
 C\UI\Tex\wii_remote_twist_west.atg
+C\UI\Tex\x360_control_005.xnm
+C\UI\Tex\x360_control_007.xnm
+C\UI\Tex\x360_control_008.xnm
+C\UI\Tex\x360_control_013.xnm
 C\UI\Tex\xbox360_BACK_button.xnm
 C\UI\Tex\xbox360_DPAD.dds
 C\UI\Tex\xbox360_DPAD.xnm
