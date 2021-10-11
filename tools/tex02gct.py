@@ -1,4 +1,18 @@
-import os, sys, struct
+import sys, struct
+from math import fmod
+
+def c_int_mod(x, y):
+    return int(fmod(x, y))
+
+def pad_num(num, pad_to=4):
+    if c_int_mod(num, pad_to) != 0:
+        return ((num // pad_to) + 1)*pad_to
+    else:
+        return num
+
+def get_padded_size(width, height, blk_width, blk_height, bpp):
+    raw_size = pad_num(width, blk_width) * pad_num(height, blk_height)
+    return round(raw_size * (bpp/8))
 
 if len(sys.argv) < 3:
     print(".TEX0 to Cars .GCT\n\nUsage: python tex02gct.py <INPUT_TEX0> <OUTPUT_GCT> <INPUT_PLT0>\n\nIf your image is in CI8, then you need to specify a palette file. Otherwise, you can skip the INPUT_PLT0 argument.")
@@ -9,6 +23,7 @@ gct = open(sys.argv[2], "wb")
 CMPR_HEADER = b"\x00\x00\x00\x02\x00\x00\x00\x29\x00\x00\x00\x00"
 RGBA8_HEADER = b"\x00\x00\x00\x02\x00\x00\x00\x0F\x00\x00\x00\x00"
 CI8_HEADER =  b"\x00\x00\x00\x02\x00\x00\x00\x3A"
+I8_HEADER =  b"\x00\x00\x00\x02\x00\x00\x00\x3C"
 
 tex0_header = struct.unpack(">4sIIIIIIHHII", tex0.read(0x28))
 
@@ -28,9 +43,17 @@ if magic != b"TEX0":
     print("Invalid TEX0 File.")
     exit(-1)
 
-if pixelformat == 0x0e:
+if pixelformat == 0x01:
     tex0.seek(0x40)
-    image_size = int((width*height)/2)
+    image_size = get_padded_size(width, height, 8, 4, 8)
+    data = tex0.read(image_size)
+    gct.write(I8_HEADER)
+    number_images = 1
+    gct.write(struct.pack(">IIIIII", number_images, width, height, width, height, image_size))
+    gct.write(data)
+elif pixelformat == 0x0e:
+    tex0.seek(0x40)
+    image_size = get_padded_size(width, height, 8, 8, 4)
     data = tex0.read(image_size)
     gct.write(CMPR_HEADER)
     number_images = 1
@@ -38,7 +61,7 @@ if pixelformat == 0x0e:
     gct.write(data)
 elif pixelformat == 0x06:
     tex0.seek(0x40)
-    image_size = width*height*4
+    image_size = get_padded_size(width, height, 4, 4, 32)
     data = tex0.read(image_size)
     gct.write(RGBA8_HEADER)
     number_images = 1
@@ -51,7 +74,7 @@ elif pixelformat == 0x09:
     else:
         palette = open(sys.argv[3], "rb")
     tex0.seek(0x40)
-    image_size = width*height
+    image_size = get_padded_size(width, height, 8, 4, 8)
     data = tex0.read(image_size)
     palette.seek(0x1c)
     number_colors = int.from_bytes(palette.read(2), "big")
