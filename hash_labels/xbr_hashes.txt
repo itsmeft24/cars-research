@@ -2290,7 +2290,7 @@ C\Global\Chars\Bub\Tex\Bub_Eye_L.xnm
 C\Global\Chars\Bub\Tex\Bub_Eye_R.xnm
 C\Global\Chars\Bub\Tex\Bub_Light.dds
 C\Global\Chars\Bub\Tex\Bub_Light.xnm
-C\Global\Chars\Bub\Tex\Bub_Light_gloss.dds										  
+C\Global\Chars\Bub\Tex\Bub_Light_gloss.dds
 C\Global\Chars\Bub\Tex\Bub_Tire_01.dds
 C\Global\Chars\Bub\Tex\Bub_Tire_01.xnm
 C\Global\Chars\Bub\Tex\Bub_Tire_01_Gloss.dds
@@ -2939,7 +2939,7 @@ C\Global\Chars\Fred\Tex\Fred_Eye.dds
 C\Global\Chars\Fred\Tex\Fred_Eye.xnm
 C\Global\Chars\Fred\Tex\Fred_Glass.dds
 C\Global\Chars\Fred\Tex\Fred_Glass.xnm
-C\Global\Chars\Fred\Tex\Fred_Glass_gloss.dds											
+C\Global\Chars\Fred\Tex\Fred_Glass_gloss.dds
 C\Global\Chars\Fred\Tex\Fred_Tire.xnm
 C\Global\Chars\Fred\Tex\Fred_tire.dds
 C\Global\Chars\Fred\Tex\Fred_tire_gloss.dds
@@ -8687,7 +8687,6 @@ C\Global\Chars\Zeke\Tex\zeke_under_gloss.dds
 C\Global\Chars\Zeke\Zeke.phy.bpb
 C\Global\Chars\Zeke\Zeke_Rustbucket.phy.bpb
 C\Global\Chars\Zeke\zeke_info.dat.bpb
-C\Global\Chars\bub\Tex\bub_light_gloss.dds
 C\Global\Chars\chars.x360.mst
 C\Global\Chars\charsHDR.x360.mst
 C\Global\Chars\charshadowreceivers.x360.mst
