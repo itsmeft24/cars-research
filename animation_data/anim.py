@@ -6,11 +6,75 @@ def ms_to_frame(ms):
 def denormalize_from_1f_to_i16(f):
     return round(f * 32767.0)
 
-def normalize_from_i16_to_1f(uint16):
-    return (uint16 / 32767.0) * 1.0
+def normalize_from_i16_to_1f(int16):
+    return (int16 / 32767.0) * 1.0
 
-def normalize_from_i16_to_360f(uint16): # useless because this game uses angle-axis
-    return (uint16 / 32767.0) * 180.0
+def denormalize_from_1f_to_i8(f):
+    return round(f * 127.0)
+
+def normalize_from_i8_to_1f(int8):
+    return (int8 / 127.0) * 1.0
+
+# https://gamedev.stackexchange.com/questions/28023/python-float-32bit-to-half-float-16bit
+def f16_to_f32(float16):
+    s = int((float16 >> 15) & 0x00000001)    # sign
+    e = int((float16 >> 10) & 0x0000001f)    # exponent
+    f = int(float16 & 0x000003ff)            # fraction
+
+    if e == 0:
+        if f == 0:
+            ret = int(s << 31)
+            return struct.unpack(">f", ret.to_bytes(4, "big"))[0]
+        else:
+            while not (f & 0x00000400):
+                f = f << 1
+                e -= 1
+            e += 1
+            f &= ~0x00000400
+            #print(s,e,f)
+    elif e == 31:
+        if f == 0:
+            ret = int((s << 31) | 0x7f800000)
+            return struct.unpack(">f", ret.to_bytes(4, "big"))[0]
+        else:
+            ret = int((s << 31) | 0x7f800000 | (f << 13))
+            return struct.unpack(">f", ret.to_bytes(4, "big"))[0]
+
+    e = e + (127 -15)
+    f = f << 13
+    ret = int((s << 31) | (e << 23) | f)
+    return struct.unpack(">f", ret.to_bytes(4, "big"))[0]
+
+def f32_to_f16(float32):
+    F16_EXPONENT_BITS = 0x1F
+    F16_EXPONENT_SHIFT = 10
+    F16_EXPONENT_BIAS = 15
+    F16_MANTISSA_BITS = 0x3ff
+    F16_MANTISSA_SHIFT =  (23 - F16_EXPONENT_SHIFT)
+    F16_MAX_EXPONENT =  (F16_EXPONENT_BITS << F16_EXPONENT_SHIFT)
+
+    a = struct.pack('>f',float32)
+    b = binascii.hexlify(a)
+
+    f32 = int(b,16)
+    f16 = 0
+    sign = (f32 >> 16) & 0x8000
+    exponent = ((f32 >> 23) & 0xff) - 127
+    mantissa = f32 & 0x007fffff
+
+    if exponent == 128:
+        f16 = sign | F16_MAX_EXPONENT
+        if mantissa:
+            f16 |= (mantissa & F16_MANTISSA_BITS)
+    elif exponent > 15:
+        f16 = sign | F16_MAX_EXPONENT
+    elif exponent > -15:
+        exponent += F16_EXPONENT_BIAS
+        mantissa >>= F16_MANTISSA_SHIFT
+        f16 = sign | exponent << F16_EXPONENT_SHIFT | mantissa
+    else:
+        f16 = sign
+    return f16
 
 class BezierPositionKey:
     def __init__(self, bytes):
@@ -61,7 +125,7 @@ class ShortRotationKey:
     def __repr__(self):
         return "SRK: Time: "+str(self.Time)+" Angle:"+str(self.Angle)+" AxisX:"+str(self.AxisX)+" AxisY:"+str(self.AxisY)+" AxisZ:"+str(self.AxisZ)
 
-class FloatRotationKey: # Exclusive to RoR.
+class FloatRotationKey: # Exclusive to ROR.
     def __init__(self, bytes):
         key = struct.unpack(">fffff", bytes) # 20 bytes
         self.Time = key[0]
@@ -72,9 +136,26 @@ class FloatRotationKey: # Exclusive to RoR.
     def pack(self):
         return struct.pack(">fffff", self.Time, self.Angle, self.AxisX, self.AxisY, self.AxisZ)
     def new(time, angle, axx, axy, axz):
-        return ShortRotationKey(struct.pack(">fffff", time, angle, axx, axy, axz))
+        return FloatRotationKey(struct.pack(">fffff", time, angle, axx, axy, axz))
     def __repr__(self):
         return "FRK: Time: "+str(self.Time)+" Angle:"+str(self.Angle)+" AxisX:"+str(self.AxisX)+" AxisY:"+str(self.AxisY)+" AxisZ:"+str(self.AxisZ)
+
+class HalfFloatRotationKey: # Exclusive to ROR.
+    def __init__(self, bytes):
+        key = struct.unpack(">fhhhh", bytes) # 12 bytes
+        self.Time = key[0]
+        self.Angle = f16_to_f32(key[1])
+        self.AxisX = f16_to_f32(key[2])
+        self.AxisY = f16_to_f32(key[3])
+        self.AxisZ = f16_to_f32(key[4])
+    def pack(self):
+        return struct.pack(">fhhhh", f32_to_f16(self.Time), f32_to_f16(self.Angle), f32_to_f16(self.AxisX), f32_to_f16(self.AxisY), f32_to_f16(self.AxisZ))
+    def new(time, angle, axx, axy, axz):
+        return HalfFloatRotationKey(struct.pack(">fhhhh", f32_to_f16(time), f32_to_f16(angle), f32_to_f16(axx), f32_to_f16(axy), f32_to_f16(axz)))
+    def __repr__(self):
+        return "HFRK: Time: "+str(self.Time)+" Angle:"+str(self.Angle)+" AxisX:"+str(self.AxisX)+" AxisY:"+str(self.AxisY)+" AxisZ:"+str(self.AxisZ)
+    def as_frk(self):
+        return FloatRotationKey.new(self.Time, self.Angle, self.AxisX, self.AxisY, self.AxisZ)
 
 class ByteRotationKey:
     def __init__(self, bytes):
@@ -112,8 +193,16 @@ def frk_to_srk(FRK):
         denormalize_from_1f_to_i16(FRK.AxisZ)
     )
 
-anim = open("CAN_BEF_BREATH_B.got", "rb")
+def hfrk_to_srk(HFRK):
+    return ShortRotationKey.new(
+        HFRK.Time,
+        denormalize_from_1f_to_i16(HFRK.Angle),
+        denormalize_from_1f_to_i16(HFRK.AxisX),
+        denormalize_from_1f_to_i16(HFRK.AxisY),
+        denormalize_from_1f_to_i16(HFRK.AxisZ)
+    )
 
+anim = open("CAN_BEF_BREATH_B_WII.wot", "rb")
 
 hdr = struct.unpack(">iIII", anim.read(16))
 version = hdr[0]
@@ -144,8 +233,6 @@ pos_arr = []
 rot_arr = []
 fov_arr = []
 
-print(anim.tell())
-
 for x in range(num_pos_key):
     POSTABLE = struct.unpack(">II", anim.read(8))
     number_of_frames_in_key = POSTABLE[0]
@@ -173,8 +260,6 @@ for x in range(num_pos_key):
             
         print(key)
 
-print(anim.tell())
-
 for x in range(num_rot_key):
     ROTTABLE = struct.unpack(">II", anim.read(8))
     number_of_frames_in_key = ROTTABLE[0]
@@ -193,13 +278,19 @@ for x in range(num_rot_key):
             
         elif version == -8:
         
+            if rot_type == 3:
+                key = HalfFloatRotationKey(anim.read(12))
+                rot_arr.append(key)
             if rot_type == 2:
                 key = FloatRotationKey(anim.read(20))
                 rot_arr.append(key)
-            elif rot_type == 0 or rot_type == 1 or rot_type == 3:
+            elif rot_type == 1:
                 key = ShortRotationKey(anim.read(12))
                 rot_arr.append(key)
-            
+            elif rot_type == 0:
+                print("RotationType 0 is not tested. Things may or may not work.")
+                key = ByteRotationKey(anim.read(8))
+                rot_arr.append(key)
         print(key)
 
 for x in range(num_fov_key):
