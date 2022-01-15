@@ -148,8 +148,6 @@ for x in range(numlabels):
                     output.write(name+"="+'"'+value+'"\n')
                 else:
                     output.write(name+"="+value+"\n")
-                
-                output.write(name+"="+value+"\n")
             elif flag == 2:# Flag is 0x02?
                 param_block.seek(0xA, 1)
                 value = readString(param_block)
