@@ -1,4 +1,4 @@
-import struct, os, math
+import struct, os, math, binascii
 
 def ms_to_frame(ms):
     return round(ms / (1/30))
@@ -125,37 +125,37 @@ class ShortRotationKey:
     def __repr__(self):
         return "SRK: Time: "+str(self.Time)+" Angle:"+str(self.Angle)+" AxisX:"+str(self.AxisX)+" AxisY:"+str(self.AxisY)+" AxisZ:"+str(self.AxisZ)
 
-class FloatRotationKey: # Exclusive to ROR.
+class QuaternionRotationKey: # Exclusive to ROR.
     def __init__(self, bytes):
-        key = struct.unpack(">fffff", bytes) # 20 bytes
+        key = struct.unpack(">fffff", bytes) # 12 bytes
         self.Time = key[0]
-        self.Angle = key[1]
-        self.AxisX = key[2]
-        self.AxisY = key[3]
-        self.AxisZ = key[4]
+        self.X = key[1]
+        self.Y = key[2]
+        self.Z = key[3]
+        self.W = key[4]
     def pack(self):
-        return struct.pack(">fffff", self.Time, self.Angle, self.AxisX, self.AxisY, self.AxisZ)
-    def new(time, angle, axx, axy, axz):
-        return FloatRotationKey(struct.pack(">fffff", time, angle, axx, axy, axz))
+        return struct.pack(">fffff", self.Time, self.X, self.Y, self.Z, self.W)
+    def new(time, x, y, z, w):
+        return HalfQuaternionRotationKey(struct.pack(">fffff", time, x, y, z, w))
     def __repr__(self):
-        return "FRK: Time: "+str(self.Time)+" Angle:"+str(self.Angle)+" AxisX:"+str(self.AxisX)+" AxisY:"+str(self.AxisY)+" AxisZ:"+str(self.AxisZ)
+        return "QRK: Time: "+str(self.Time)+" X:"+str(self.X)+" Y:"+str(self.Y)+" Z:"+str(self.Z)+" W:"+str(self.W)
 
-class HalfFloatRotationKey: # Exclusive to ROR.
+class HalfQuaternionRotationKey: # Exclusive to ROR.
     def __init__(self, bytes):
         key = struct.unpack(">fhhhh", bytes) # 12 bytes
         self.Time = key[0]
-        self.Angle = f16_to_f32(key[1])
-        self.AxisX = f16_to_f32(key[2])
-        self.AxisY = f16_to_f32(key[3])
-        self.AxisZ = f16_to_f32(key[4])
+        self.X = f16_to_f32(key[1])
+        self.Y = f16_to_f32(key[2])
+        self.Z = f16_to_f32(key[3])
+        self.W = f16_to_f32(key[4])
     def pack(self):
-        return struct.pack(">fhhhh", f32_to_f16(self.Time), f32_to_f16(self.Angle), f32_to_f16(self.AxisX), f32_to_f16(self.AxisY), f32_to_f16(self.AxisZ))
-    def new(time, angle, axx, axy, axz):
-        return HalfFloatRotationKey(struct.pack(">fhhhh", f32_to_f16(time), f32_to_f16(angle), f32_to_f16(axx), f32_to_f16(axy), f32_to_f16(axz)))
+        return struct.pack(">fhhhh", f32_to_f16(self.Time), f32_to_f16(self.X), f32_to_f16(self.Y), f32_to_f16(self.Z), f32_to_f16(self.W))
+    def new(time, x, y, z, w):
+        return HalfQuaternionRotationKey(struct.pack(">fhhhh", f32_to_f16(time), f32_to_f16(x), f32_to_f16(y), f32_to_f16(z), f32_to_f16(w)))
     def __repr__(self):
-        return "HFRK: Time: "+str(self.Time)+" Angle:"+str(self.Angle)+" AxisX:"+str(self.AxisX)+" AxisY:"+str(self.AxisY)+" AxisZ:"+str(self.AxisZ)
-    def as_frk(self):
-        return FloatRotationKey.new(self.Time, self.Angle, self.AxisX, self.AxisY, self.AxisZ)
+        return "HQRK: Time: "+str(self.Time)+" X:"+str(self.X)+" Y:"+str(self.Y)+" Z:"+str(self.Z)+" W:"+str(self.W)
+    def as_qrk(self):
+        return QuaternionRotationKey.new(self.Time, self.X, self.Y, self.Z, self.W)
 
 class ByteRotationKey:
     def __init__(self, bytes):
@@ -184,25 +184,7 @@ class FOVKey:
     def __repr__(self):
         return "FOV: Time: "+str(self.Time)+" FOV:"+str(self.FOV)
 
-def frk_to_srk(FRK):
-    return ShortRotationKey.new(
-        FRK.Time,
-        denormalize_from_1f_to_i16(FRK.Angle),
-        denormalize_from_1f_to_i16(FRK.AxisX),
-        denormalize_from_1f_to_i16(FRK.AxisY),
-        denormalize_from_1f_to_i16(FRK.AxisZ)
-    )
-
-def hfrk_to_srk(HFRK):
-    return ShortRotationKey.new(
-        HFRK.Time,
-        denormalize_from_1f_to_i16(HFRK.Angle),
-        denormalize_from_1f_to_i16(HFRK.AxisX),
-        denormalize_from_1f_to_i16(HFRK.AxisY),
-        denormalize_from_1f_to_i16(HFRK.AxisZ)
-    )
-
-anim = open("CAN_BEF_BREATH_B_WII.wot", "rb")
+anim = open(r"FrontEndUI_Camera_Anim_HD.got", "rb")
 
 hdr = struct.unpack(">iIII", anim.read(16))
 version = hdr[0]
@@ -279,18 +261,18 @@ for x in range(num_rot_key):
         elif version == -8:
         
             if rot_type == 3:
-                key = HalfFloatRotationKey(anim.read(12))
+                key = HalfQuaternionRotationKey(anim.read(12))
                 rot_arr.append(key)
             if rot_type == 2:
-                key = FloatRotationKey(anim.read(20))
+                key = QuaternionRotationKey(anim.read(20))
                 rot_arr.append(key)
             elif rot_type == 1:
                 key = ShortRotationKey(anim.read(12))
                 rot_arr.append(key)
             elif rot_type == 0:
-                print("RotationType 0 is not tested. Things may or may not work.")
                 key = ByteRotationKey(anim.read(8))
                 rot_arr.append(key)
+            
         print(key)
 
 for x in range(num_fov_key):
