@@ -31,7 +31,12 @@ num_pos_key = hdr_after_table[3]
 num_rot_key = hdr_after_table[4]
 num_fov_key = hdr_after_table[5]
 
-anim_out.write(struct.pack(">fIIIII", duration, 1, pos_type, num_pos_key, num_rot_key, num_fov_key))
+out_rot_type = 1
+
+if rot_type == 0:
+    out_rot_type = 0
+
+anim_out.write(struct.pack(">fIIIII", duration, out_rot_type, pos_type, num_pos_key, num_rot_key, num_fov_key))
 anim_out.write(b"\x00\x00\x00\x00")
 anim.seek(4, 1)
 
