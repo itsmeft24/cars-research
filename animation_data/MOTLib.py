@@ -147,11 +147,11 @@ class QuaternionRotationKey: # Exclusive to ROR.
     def __repr__(self):
         return "QRK: Time: "+str(self.Time)+" X:"+str(self.X)+" Y:"+str(self.Y)+" Z:"+str(self.Z)+" W:"+str(self.W)
     def as_srk(self):
-        quat = Quaternion((key.W, key.X, key.Y, key.Z))
+        quat = Quaternion((self.W, self.X, self.Y, self.Z))
         axis, angle = quat.to_axis_angle()
         axis = axis.normalized()
         return ShortRotationKey.new(
-            key.Time,
+            self.Time,
             round(angle*SHORT_ANGLE_AXIS_KEY_SCALE), # why the h e double hockey sticks this works is beyond me but w/e (constant's value is equal to 2048/pi)
             denormalize_from_1f_to_i16(axis.x),
             denormalize_from_1f_to_i16(axis.y),
