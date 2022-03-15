@@ -1,5 +1,8 @@
-#include "xbr.h"
+#include <iostream>
+#include <fstream>
 #include <filesystem>
+
+#include "xbr.h"
 
 std::string get_parent(std::string FILE_PATH, bool is_win) {
 	char delimiter;
@@ -17,7 +20,8 @@ void print_help(std::string argstr) {
 	std::cout << "Cars Race-O-Rama .XBR/.P3R File Extractor" << std::endl << std::endl;
 	std::cout << "Usage: " << argstr << " <XBR_P3R_FILE> <FILE_PATH> <PLATFORM>" << std::endl << std::endl;
 	std::cout << "Platforms: -x360\t Xbox 360" << std::endl;
-	std::cout << "           -ps3 \t PlayStation 3";
+	std::cout << "           -ps3 \t PlayStation 3" << std::endl;
+	std::cout << "           -ps2 \t PlayStation 2";
 }
 
 int main(int argc, char *argv[]) {
@@ -25,57 +29,62 @@ int main(int argc, char *argv[]) {
 		print_help(argv[0]);
 		return -1;
 	}
-	if (!(strcmp(argv[3], "-x360") != 0) && !(strcmp(argv[3], "-ps3") != 0)){
-		std::cout << argv[3];
+
+	std::string XBR_PATH = argv[1];
+	std::string FILE_PATH = argv[2];
+	std::string PARENT = FILE_PATH;
+	Cars3ARC::Platform PLATFORM;
+
+	if (strcmp(argv[3], "-x360") == 0)
+		PLATFORM = Cars3ARC::Platform::PS3;
+	else if (strcmp(argv[3], "-ps3") == 0)
+		PLATFORM = Cars3ARC::Platform::PS3;
+	else if (strcmp(argv[3], "-ps2") == 0)
+		PLATFORM = Cars3ARC::Platform::PS2;
+	else {
 		print_help(argv[0]);
 		return -1;
 	}
 
-	std::string XBR_PATH = argv[1];
-	std::string FILE_PATH = argv[2];
-	std::string PLATFORM = argv[3];
-	std::string PARENT = FILE_PATH;
+	std::ifstream file(XBR_PATH, std::ios::in | std::ios::binary);
 
-	Cars3ARC::XBR_FILE xbr;
+	if (!file) {
+		std::cout << "Failed to open archive.";
+		return -1;
+	}
 
-	if (PLATFORM == "-ps3") { // Force Linux-ify the path.
+	Cars3ARC::XBR_FILE xbr(file, PLATFORM);
+
+	if (PLATFORM == Cars3ARC::Platform::PS3) { // Force Linux-ify the path.
 		std::replace(FILE_PATH.begin(), FILE_PATH.end(), '\\', '/');
 		PARENT = get_parent(FILE_PATH, false);
-		if (!xbr.read(XBR_PATH, true)) {
-			std::cout << "Failed to open archive.";
-			return -1;
-		}
 	}
 
 	else { // Force Windows-ify the path.
 		std::replace(FILE_PATH.begin(), FILE_PATH.end(), '/', '\\');
 		PARENT = get_parent(FILE_PATH, true);
-		if (!xbr.read(XBR_PATH, false)) {
-			std::cout << "Failed to open archive.";
-			return -1;
-		}
 	}
 
-	Cars3ARC::XBR_TABLE_ENTRY xbr_entry;
+	Cars3ARC::XBR_TABLE_ENTRY* xbr_entry = xbr.lookup(FILE_PATH);
 
-	if (!xbr.lookup(FILE_PATH, &xbr_entry)) {
+	if (!xbr_entry) {
 		std::cout << FILE_PATH << " Was not found in " << XBR_PATH << "." << std::endl;
 		return -1;
 	}
 
-	xbr.file.seekg(xbr_entry.offset);
+	file.seekg(xbr_entry->offset);
 
-	char* bytes = new char[xbr_entry.size];
+	char* bytes = new char[xbr_entry->size];
 
-	xbr.file.read(bytes, xbr_entry.size);
+	file.read(bytes, xbr_entry->size);
 
 	std::filesystem::create_directories(PARENT);
 
 	std::ofstream output;
 	output.open(FILE_PATH, std::ios::out | std::ios::binary);
-	output.write(bytes, xbr_entry.size);
+	output.write(bytes, xbr_entry->size);
 	output.close();
 	delete[] bytes;
-	std::cout << "Extracted File: " << FILE_PATH << std::endl << "DJB-2 Hash: 0x" << std::hex << xbr_entry.hash << std::endl;
+	std::cout << "Extracted File: " << FILE_PATH << std::endl << "DJB-2 Hash: 0x" << std::hex << xbr_entry->hash << std::endl;
 
 }

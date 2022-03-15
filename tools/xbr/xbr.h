@@ -2,10 +2,16 @@
 #include <algorithm>
 #include <unordered_map>
 #include <fstream>
-#include <iostream>
 #include <string>
 
 namespace Cars3ARC {
+
+	enum class Platform : uint32_t
+	{
+		Xbox360,
+		PS3,
+		PS2
+	};
 
 	std::unordered_map<unsigned long, std::string> labels;
 
@@ -73,60 +79,40 @@ namespace Cars3ARC {
 		}
 	};
 
-	struct XBR_RESULT {
-		unsigned long size;
-		unsigned long offset;
-		void SWAP() {
-			swap_ulong(&size);
-			swap_ulong(&offset);
-		}
-	};
-
 	#pragma pack(pop)
 
 	class XBR_FILE {
+	private:
+		XBR_HEADER m_header;
+		std::vector<XBR_TABLE_ENTRY> m_table;
+		Platform m_platform;
 	public:
-		XBR_HEADER header;
-		std::vector<XBR_TABLE_ENTRY> table;
-		std::ifstream file;
-		bool is_ps3;
-		bool read(std::string path, bool is_ps3_) {
-			is_ps3 = is_ps3_;
-			file.open(path, std::ios::in | std::ios::binary);
-			if (!file) {
-				return false;
-			}
-			file.read(reinterpret_cast<char*>(&header), sizeof(header));
-			header.SWAP();
-			table.reserve(header.number_files);
-			XBR_TABLE_ENTRY curr_entry;
-			for (int x = 0; x < header.number_files; x++) {
-				file.read(reinterpret_cast<char*>(&curr_entry), sizeof(curr_entry));
-				curr_entry.SWAP();
-				table.push_back(curr_entry);
-			}
-			return true;
-		}
-		bool lookup(std::string path, XBR_TABLE_ENTRY* result) {
-			unsigned long hash = djb_hash(path);
-			for (int x = 0; x < header.number_files; x++) {
-				if (table[x].hash == hash) {
-					/*
-					result = &(table[x]);
-					return true;
-					*/
-					(*result).hash = table[x].hash;
-					(*result).size = table[x].size;
-					if (is_ps3) {
-						(*result).offset = table[x].offset;
-					}
-					else {
-						(*result).offset = table[x].offset << 11; // * 0x800
-					}
-					return true;
+		XBR_FILE(std::istream& file, Platform p) {
+			m_platform = p;
+
+			file.read((char*)&m_header, sizeof(m_header));
+
+			if (m_platform == Platform::Xbox360 || m_platform == Platform::PS3)
+				m_header.SWAP();
+
+			m_table.resize(m_header.number_files);
+			file.read((char*)&m_table[0], m_header.number_files * sizeof(XBR_TABLE_ENTRY));
+
+			if (m_platform == Platform::Xbox360 || m_platform == Platform::PS3) {
+				for (auto& f : m_table) {
+					f.SWAP();
 				}
 			}
-			return false;
+		}
+
+		XBR_TABLE_ENTRY* lookup(std::string path) {
+			unsigned long hash = djb_hash(path);
+			for (auto& f : m_table) {
+				if (f.hash == hash) {
+					return &f;
+				}
+			}
+			return nullptr;
 		}
 	};
 

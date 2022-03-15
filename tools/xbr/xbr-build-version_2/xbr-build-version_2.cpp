@@ -1,9 +1,10 @@
 #include <algorithm>
 #include <iostream>
-#include "../xbr.h"
 #include <vector>
 #include <fstream>
 #include <filesystem>
+
+#include "../xbr.h"
 
 void replace_all_in_place(std::string& str, const std::string& from, const std::string& to) {
     size_t start_pos = 0;
@@ -13,17 +14,13 @@ void replace_all_in_place(std::string& str, const std::string& from, const std::
     }
 }
 
-void write_null(std::ostream& stream, unsigned int size) {
-    unsigned int x = 0;
-    char null = '\x00';
-
-    while (x < size) {
-        stream.write(&null, 1);
-        x++;
+constexpr void write_null(std::ostream& stream, unsigned int size) {
+    for (int x = 0; x < size; x++) {
+        stream.put(0);
     }
 }
 
-unsigned long pad_to_800(unsigned long size) {
+constexpr unsigned long pad_to_800(unsigned long size) {
     if ((size / 0x800) * 0x800 == size)
         return size;
     return (size / 0x800 + 1) * 0x800;
