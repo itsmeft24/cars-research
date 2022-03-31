@@ -164,5 +164,5 @@ for x in range(numlabels):
                 value = str(np.float32(struct.unpack('>f', value_buf)[0])) # Truncate float using NumPy
                 output.write(name+"="+value+"\n")
             else:
-                print("Unknown Mater-National type flag!: "+mn_flag+" Please open an issue on the https://www.github.com/itsmeft24/cars-research repository! (Be sure to attach the file!)")
+                print("Unknown Mater-National type flag!: "+hex(mn_flag)+" Please open an issue on the https://www.github.com/itsmeft24/cars-research repository! (Be sure to attach the file!)")
 output.close()
