@@ -103,6 +103,12 @@ namespace Cars3ARC {
 					f.SWAP();
 				}
 			}
+
+			if (m_platform == Platform::Xbox360 || m_platform == Platform::PS2) {
+				for (auto& f : m_table) {
+					f.offset <<= 11;
+				}
+			}
 		}
 
 		XBR_TABLE_ENTRY* lookup(std::string path) {

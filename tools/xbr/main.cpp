@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 	Cars3ARC::Platform PLATFORM;
 
 	if (strcmp(argv[3], "-x360") == 0)
-		PLATFORM = Cars3ARC::Platform::PS3;
+		PLATFORM = Cars3ARC::Platform::Xbox360;
 	else if (strcmp(argv[3], "-ps3") == 0)
 		PLATFORM = Cars3ARC::Platform::PS3;
 	else if (strcmp(argv[3], "-ps2") == 0)
