@@ -154,6 +154,8 @@ def import_mot_main(ctx, path):
     framecount = hdr[2]
     object_count = hdr[3]
     
+    framerate = ctx.scene.render.fps
+    
     objects = []
     for x in range(object_count):
         len = struct.unpack(">I", anim.read(4))[0]
@@ -201,7 +203,7 @@ def import_mot_main(ctx, path):
                 key = BezierPositionKey(anim.read(40))
             elif pos_type == 0:
                 key = LinearPositionKey(anim.read(16))
-            insert_position_key(arm_name, objects[object_index], ms_to_frame(key.Time), key.PosX, key.PosY, key.PosZ)
+            insert_position_key(arm_name, objects[object_index], ms_to_frame(key.Time, framerate), key.PosX, key.PosY, key.PosZ)
     
     for x in range(num_rot_key):
         ROTTABLE = struct.unpack(">II", anim.read(8))
@@ -212,16 +214,16 @@ def import_mot_main(ctx, path):
             
             if rot_type == 3:
                 key = HalfQuaternionRotationKey(anim.read(12))
-                insert_quaternion_key(arm_name, objects[object_index], ms_to_frame(key.Time), key)
+                insert_quaternion_key(arm_name, objects[object_index], ms_to_frame(key.Time, framerate), key)
             elif rot_type == 2:
                 key = QuaternionRotationKey(anim.read(20))
-                insert_quaternion_key(arm_name, objects[object_index], ms_to_frame(key.Time), key)
+                insert_quaternion_key(arm_name, objects[object_index], ms_to_frame(key.Time, framerate), key)
             elif rot_type == 1:
                 key = ShortRotationKey(anim.read(12))
-                insert_short_angle_axis_key(arm_name, objects[object_index], ms_to_frame(key.Time), key)
+                insert_short_angle_axis_key(arm_name, objects[object_index], ms_to_frame(key.Time, framerate), key)
             elif rot_type == 0:
                 key = ByteRotationKey(anim.read(8))
-                insert_byte_angle_axis_key(arm_name, objects[object_index], ms_to_frame(key.Time), key)
+                insert_byte_angle_axis_key(arm_name, objects[object_index], ms_to_frame(key.Time, framerate), key)
     
     return {"FINISHED"}
 
