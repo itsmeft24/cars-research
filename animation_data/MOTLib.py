@@ -175,7 +175,7 @@ class HalfQuaternionRotationKey: # Exclusive to ROR.
     def as_qrk(self):
         return QuaternionRotationKey.new(self.Time, self.X, self.Y, self.Z, self.W)
     def as_srk(self):
-        return self.as_qrk().srk() # i would do some inheritance to make it cleaner but nah
+        return self.as_qrk().as_srk() # i would do some inheritance to make it cleaner but nah
 
 class ByteRotationKey:
     def __init__(self, bytes):
