@@ -4,8 +4,8 @@ from mathutils import *
 BYTE_ANGLE_AXIS_KEY_SCALE = (127.5/math.pi)
 SHORT_ANGLE_AXIS_KEY_SCALE = (2048/math.pi)
 
-def ms_to_frame(ms):
-    return round(ms / (1/30))
+def ms_to_frame(ms, fps):
+    return round(ms * fps)
 
 def frame_to_ms(frame_idx, fps):
     return frame_idx*1.0/fps
@@ -96,8 +96,8 @@ class BezierPositionKey:
         self.TangentOutX = key[4]
         self.TangentOutY = key[5]
         self.TangentOutZ = key[6]
-    def pack(self):
-        return struct.pack(">ffffffffff", self.Time, self.PosX, self.PosY, self.PosZ, self.TangentInX, self.TangentInY, self.TangentInZ, self.TangentOutX, self.TangentOutY, self.TangentOutZ)
+    def pack(self, endian='>'):
+        return struct.pack(endian+"ffffffffff", self.Time, self.PosX, self.PosY, self.PosZ, self.TangentInX, self.TangentInY, self.TangentInZ, self.TangentOutX, self.TangentOutY, self.TangentOutZ)
     def new(time, posx, posy, posz, tinx, tiny, tinz, toutx, touty, toutz):
         return BezierPositionKey(struct.pack(">ffffffffff", time, posx, posy, posz, tinx, tiny, tinz, toutx, touty, toutz))
     def __repr__(self):
@@ -110,8 +110,8 @@ class LinearPositionKey:
         self.PosX = key[1]
         self.PosY = key[2]
         self.PosZ = key[3]
-    def pack(self):
-        return struct.pack(">ffff", self.Time, self.PosX, self.PosY, self.PosZ)
+    def pack(self, endian='>'):
+        return struct.pack(endian+"ffff", self.Time, self.PosX, self.PosY, self.PosZ)
     def new(time, posx, posy, posz):
         return LinearPositionKey(struct.pack(">ffff", time, posx, posy, posz))
     def __repr__(self):
@@ -125,8 +125,8 @@ class ShortRotationKey:
         self.AxisX = key[2]
         self.AxisY = key[3]
         self.AxisZ = key[4]
-    def pack(self):
-        return struct.pack(">fhhhh", self.Time, self.Angle, self.AxisX, self.AxisY, self.AxisZ)
+    def pack(self, endian='>'):
+        return struct.pack(endian+"fhhhh", self.Time, self.Angle, self.AxisX, self.AxisY, self.AxisZ)
     def new(time, angle, axx, axy, axz):
         return ShortRotationKey(struct.pack(">fhhhh", time, angle, axx, axy, axz))
     def __repr__(self):
@@ -140,8 +140,8 @@ class QuaternionRotationKey: # Exclusive to ROR.
         self.Y = key[2]
         self.Z = key[3]
         self.W = key[4]
-    def pack(self):
-        return struct.pack(">fffff", self.Time, self.X, self.Y, self.Z, self.W)
+    def pack(self, endian='>'):
+        return struct.pack(endian+"fffff", self.Time, self.X, self.Y, self.Z, self.W)
     def new(time, x, y, z, w):
         return QuaternionRotationKey(struct.pack(">fffff", time, x, y, z, w))
     def __repr__(self):
@@ -166,8 +166,8 @@ class HalfQuaternionRotationKey: # Exclusive to ROR.
         self.Y = f16_to_f32(key[2])
         self.Z = f16_to_f32(key[3])
         self.W = f16_to_f32(key[4])
-    def pack(self):
-        return struct.pack(">fhhhh", f32_to_f16(self.Time), f32_to_f16(self.X), f32_to_f16(self.Y), f32_to_f16(self.Z), f32_to_f16(self.W))
+    def pack(self, endian='>'):
+        return struct.pack(endian+"fhhhh", f32_to_f16(self.Time), f32_to_f16(self.X), f32_to_f16(self.Y), f32_to_f16(self.Z), f32_to_f16(self.W))
     def new(time, x, y, z, w):
         return HalfQuaternionRotationKey(struct.pack(">fhhhh", f32_to_f16(time), f32_to_f16(x), f32_to_f16(y), f32_to_f16(z), f32_to_f16(w)))
     def __repr__(self):
@@ -175,7 +175,7 @@ class HalfQuaternionRotationKey: # Exclusive to ROR.
     def as_qrk(self):
         return QuaternionRotationKey.new(self.Time, self.X, self.Y, self.Z, self.W)
     def as_srk(self):
-        return self.as_qrk().as_srk() # i would do some inheritance to make it cleaner but nah
+        return self.as_qrk().srk() # i would do some inheritance to make it cleaner but nah
 
 class ByteRotationKey:
     def __init__(self, bytes):
@@ -185,8 +185,8 @@ class ByteRotationKey:
         self.AxisX = key[2]
         self.AxisY = key[3]
         self.AxisZ = key[4]
-    def pack(self):
-        return struct.pack(">fbbbb", self.Time, self.Angle, self.AxisX, self.AxisY, self.AxisZ)
+    def pack(self, endian='>'):
+        return struct.pack(endian+"fbbbb", self.Time, self.Angle, self.AxisX, self.AxisY, self.AxisZ)
     def new(time, angle, axx, axy, axz):
         return ByteRotationKey(struct.pack(">fbbbb", time, angle, axx, axy, axz))
     def __repr__(self):
@@ -197,9 +197,9 @@ class FOVKey:
         key = struct.unpack(">ff", bytes) # 8 bytes
         self.Time = key[0]
         self.FOV = key[1]
-    def pack(self):
-        return struct.pack(">ff", self.Time, self.FOV)
-    def new(time, angle, axx, axy, axz):
-        return FOVKey(struct.pack(">ff", Time, FOV))
+    def pack(self, endian='>'):
+        return struct.pack(endian+"ff", self.Time, self.FOV)
+    def new(time, fov):
+        return FOVKey(struct.pack(">ff", time, fov))
     def __repr__(self):
         return "FOV: Time: "+str(self.Time)+" FOV:"+str(self.FOV)
