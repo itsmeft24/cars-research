@@ -1,5 +1,4 @@
 import struct, math, binascii
-from mathutils import *
 
 BYTE_ANGLE_AXIS_KEY_SCALE = (127.5/math.pi)
 SHORT_ANGLE_AXIS_KEY_SCALE = (2048/math.pi)
@@ -146,17 +145,29 @@ class QuaternionRotationKey: # Exclusive to ROR.
         return QuaternionRotationKey(struct.pack(">fffff", time, x, y, z, w))
     def __repr__(self):
         return "QRK: Time: "+str(self.Time)+" X:"+str(self.X)+" Y:"+str(self.Y)+" Z:"+str(self.Z)+" W:"+str(self.W)
+    # Ripped out of mathutils: https://gitlab.com/ideasman42/blender-mathutils/-/blob/master/src/blenlib/intern/math_rotation.c#L1019; apparently this is more precise than using mathutils directly? idk might have something to do with C floats being less precise than python doubles
     def as_srk(self):
-        quat = Quaternion((self.W, self.X, self.Y, self.Z))
-        axis, angle = quat.to_axis_angle()
-        axis = axis.normalized()
-        return ShortRotationKey.new(
+        
+        # calculate angle/2, and sin(angle/2)
+        half_angle = math.acos(self.W)
+        sine_half_angle = math.sin(half_angle)
+    
+        # prevent division by zero for axis conversion
+        if abs(sine_half_angle) < 0.0005:
+            sine_half_angle = 1.0
+      
+        srk = ShortRotationKey.new(
             self.Time,
-            round(angle*SHORT_ANGLE_AXIS_KEY_SCALE), # why the h e double hockey sticks this works is beyond me but w/e (constant's value is equal to 2048/pi)
-            denormalize_from_1f_to_i16(axis.x),
-            denormalize_from_1f_to_i16(axis.y),
-            denormalize_from_1f_to_i16(axis.z)
+            round(half_angle * 2 * SHORT_ANGLE_AXIS_KEY_SCALE),
+            denormalize_from_1f_to_i16(self.X / sine_half_angle),
+            denormalize_from_1f_to_i16(self.Y / sine_half_angle),
+            denormalize_from_1f_to_i16(self.Z / sine_half_angle)
         )
+        
+        if srk.AxisX == 0 and srk.AxisY == 0 and srk.AxisZ == 0:
+            srk.AxisY = 32767
+        
+        return srk
 
 class HalfQuaternionRotationKey: # Exclusive to ROR.
     def __init__(self, bytes):
