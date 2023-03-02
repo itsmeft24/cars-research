@@ -87,7 +87,7 @@ for x in range(num_fov_key):
     object_index = 0
     print(objects[object_index])
     
-    anim_out.write(struct.pack(">II", number_of_frames_in_key, object_index))
+    anim_out.write(struct.pack(">I", number_of_frames_in_key))
     
     for x in range(number_of_frames_in_key):
         key = FOVKey(anim.read(8))
