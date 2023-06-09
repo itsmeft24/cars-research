@@ -3,6 +3,9 @@ import struct, math, binascii
 BYTE_ANGLE_AXIS_KEY_SCALE = (127.5/math.pi)
 SHORT_ANGLE_AXIS_KEY_SCALE = (2048/math.pi)
 
+def clamp(x, min_value, max_value):
+   return max(min(x, max_value), min_value)
+
 def ms_to_frame(ms, fps):
     return round(ms * fps)
 
@@ -10,16 +13,16 @@ def frame_to_ms(frame_idx, fps):
     return frame_idx*1.0/fps
 
 def denormalize_from_1f_to_i16(f):
-    return round(f * 32767.0)
+    return clamp(round(f * 32767.0), -32768, 32767)
 
 def normalize_from_i16_to_1f(int16):
-    return (int16 / 32767.0) * 1.0
+    return clamp(int16 / 32767.0, -1.0, 1.0)
 
 def denormalize_from_1f_to_i8(f):
-    return round(f * 127.0)
+    return clamp(round(f * 127.0), -128.0, 127.0)
 
 def normalize_from_i8_to_1f(int8):
-    return (int8 / 127.0) * 1.0
+    return clamp(int8 / 127.0, -1.0, 1.0)
 
 # https://gamedev.stackexchange.com/questions/28023/python-float-32bit-to-half-float-16bit
 def f16_to_f32(float16):
