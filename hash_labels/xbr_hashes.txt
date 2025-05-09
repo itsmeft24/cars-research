@@ -12120,6 +12120,7 @@ C\Scenes\FE\charlist.ini
 C\Scenes\HUB\Anim\DriveInBoards_A.got
 C\Scenes\HUB\Anim\DriveInBoards_B.got
 C\Scenes\HUB\Anim\DriveInTear.gol
+C\Scenes\HUB\Anim\DriveInTear.got
 C\Scenes\HUB\Anim\DriveInTear.mcf
 C\Scenes\HUB\Anim\DriveInTear.mcf.x360.bin
 C\Scenes\HUB\Anim\DriveInTear.mph
