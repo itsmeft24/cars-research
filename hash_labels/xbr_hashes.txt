@@ -12071,6 +12071,7 @@ C\Scenes\CT_TD\tex\MVH_Cloud_Tracks.dds
 C\Scenes\CT_TD\tex\MVH_Cloud_Tracks.xnm
 C\Scenes\CT_TD\tex\RS_daysky.dds
 C\Scenes\CT_TD\tex\RS_daysky.xnm
+C\Scenes\CT_TD\tex\cttdneonflos.atd
 C\Scenes\CT_TD\tex\cttdneonflos.atg
 C\Scenes\CT_TD\tex\cttdneonflos.xnm
 C\Scenes\CT_TD\tex\fluffyclouds.dds
