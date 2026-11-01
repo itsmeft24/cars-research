@@ -1,0 +1,10 @@
+[package]
+name = "cars3-installer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+binrw = "0.15.0"
+egui = "0.31.1"
+flate2 = "1.1.1"
+reqwest = { version = "0.12.15", features = ["blocking"] }
