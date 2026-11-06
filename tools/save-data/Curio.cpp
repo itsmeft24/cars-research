@@ -3,6 +3,8 @@
 #include <unordered_map>
 #include <cstdint>
 #include <array>
+#include <filesystem>
+#include <print>
 #include "inipp.hpp"
 
 struct EventSetMetadata {
@@ -10,8 +12,8 @@ struct EventSetMetadata {
     std::vector<std::string> events;
 };
 
-auto read_event_database() -> std::vector<EventSetMetadata> {
-    std::ifstream file("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Cars Mater-National\\DataPC\\C\\Act\\EventInfo.dat", std::ios::in);
+auto read_event_database(const std::filesystem::path& data_dir) -> std::vector<EventSetMetadata> {
+    std::ifstream file(data_dir / "C/Act/EventInfo.dat", std::ios::in);
     inipp::Ini ini;
     ini.parse(file);
 
@@ -36,8 +38,8 @@ struct VehicleMetadata {
     std::vector<std::string> wheel_sets;
 };
 
-auto read_vehicle_database() -> std::vector<VehicleMetadata> {
-    std::ifstream file("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Cars Mater-National\\DataPC\\C\\Global\\Chars\\VehicleInfo.dat", std::ios::in);
+auto read_vehicle_database(const std::filesystem::path& data_dir) -> std::vector<VehicleMetadata> {
+    std::ifstream file(data_dir / "C/Global/Chars/VehicleInfo.dat", std::ios::in);
     inipp::Ini ini;
     ini.parse(file);
 
@@ -61,8 +63,8 @@ auto read_vehicle_database() -> std::vector<VehicleMetadata> {
     return vehicles;
 }
 
-auto read_story_database() -> std::vector<std::string> {
-    std::ifstream file("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Cars Mater-National\\DataPC\\C\\Story\\StoryInfo.dat", std::ios::in);
+auto read_story_database(const std::filesystem::path& data_dir) -> std::vector<std::string> {
+    std::ifstream file(data_dir / "C/Story/StoryInfo.dat", std::ios::in);
     inipp::Ini ini;
     ini.parse(file);
 
@@ -80,8 +82,8 @@ struct PartGroupMetadata {
     std::vector<std::string> parts;
 };
 
-auto read_scavenger_hunt_data() -> std::vector<PartGroupMetadata> {
-    std::ifstream file("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Cars Mater-National\\DataPC\\C\\Act\\ScavengerHuntData.txt", std::ios::in);
+auto read_scavenger_hunt_data(const std::filesystem::path& data_dir) -> std::vector<PartGroupMetadata> {
+    std::ifstream file(data_dir / "C/Act/ScavengerHuntData.txt", std::ios::in);
     inipp::Ini ini;
     ini.parse(file);
 
@@ -527,13 +529,32 @@ struct SaveFile {
     }
 };
 
-auto main() -> int
+auto main(int argc, char* argv[]) -> int
 {
-    auto event_info = read_event_database();
-    auto vehicle_info = read_vehicle_database();
-    auto story_info = read_story_database();
-    auto scavenger_hunt_data = read_scavenger_hunt_data();
-    std::ifstream save("C:\\Users\\risha\\OneDrive\\Documents\\THQ\\Cars2\\PSLOT0.dat", std::ios::in | std::ios::binary);
+    if (argc < 3) {
+        std::println(std::cerr, "Curio - Cars: Mater-National (PC) save data parser\n");
+        std::println(std::cerr, "Usage: {} <DATAPC_DIR> <SAVE_FILE>", argv[0]);
+        std::println(std::cerr, "  DATAPC_DIR  The game's DataPC directory (e.g. \"...\\Cars Mater-National\\DataPC\")");
+        std::println(std::cerr, "  SAVE_FILE   A profile save (e.g. \"Documents\\THQ\\Cars2\\PSLOT0.dat\")");
+        return -1;
+    }
+
+    const std::filesystem::path data_dir = argv[1];
+    if (!std::filesystem::is_directory(data_dir / "C")) {
+        std::println(std::cerr, "{} does not look like a DataPC directory (missing the C folder).", data_dir.string());
+        return -1;
+    }
+
+    auto event_info = read_event_database(data_dir);
+    auto vehicle_info = read_vehicle_database(data_dir);
+    auto story_info = read_story_database(data_dir);
+    auto scavenger_hunt_data = read_scavenger_hunt_data(data_dir);
+
+    std::ifstream save(argv[2], std::ios::in | std::ios::binary);
+    if (!save) {
+        std::println(std::cerr, "Failed to open {}.", argv[2]);
+        return -1;
+    }
     SaveFile file = SaveFile::parse(save, event_info, vehicle_info, story_info, scavenger_hunt_data);
     std::println(std::cout, "{}", (uint64_t)save.tellg());
     return 0;

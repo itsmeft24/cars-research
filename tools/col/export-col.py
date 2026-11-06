@@ -9,7 +9,7 @@ class TerrainDataRecordOffsetIndexEntry:
         return struct.pack("<iffff", self.file_offset, self.min_range[0], self.min_range[1], self.max_range[0], self.max_range[1])
     def from_le_bytes(bytes):
         file_offset, min_range_x, min_range_y, max_range_x, max_range_y = struct.unpack("<iffff", bytes)
-        return TerrainDataRecordOffsetIndexEntry(file_offset, (min_range_x, min_range_y), (min_range_x, min_range_y))
+        return TerrainDataRecordOffsetIndexEntry(file_offset, (min_range_x, min_range_y), (max_range_x, max_range_y))
 
 class TreeNodeValue:
     def __init__(self, dimension, _min, _max):

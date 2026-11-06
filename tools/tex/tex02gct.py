@@ -80,6 +80,7 @@ elif pixelformat == 0x09:
     number_colors = int.from_bytes(palette.read(2), "big")
     palette.seek(0x40)
     palette = palette.read(number_colors*2)
+    palette = palette.ljust(256*2, b"\x00")
     gct.write(CI8_HEADER)
     gct.write(number_colors.to_bytes(4, byteorder='big'))
     gct.write(palette)

@@ -2,7 +2,7 @@ import struct, json, sys, os
 
 if len(sys.argv) < 4:
     print("Cars Localization (.BIN and .LOC) to .JSON Converter\n")
-    print("Usage: python bin_loc_json.py <INPUT_BIN> <INPUT_LOC> <OUTPUT_JSON>")
+    print("Usage: python bin_loc_json.py <INPUT_LOC> <INPUT_BIN> <OUTPUT_JSON>")
     exit(-1)
 
 loc = open(sys.argv[1], "rb")

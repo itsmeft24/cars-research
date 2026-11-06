@@ -19,7 +19,7 @@ mod utils;
 mod xbr;
 
 const HASH_LABEL_DB_URL: &str = "https://raw.githubusercontent.com/itsmeft24/cars-research/refs/heads/main/hash_labels/xbr_hashes.txt";
-const DEFAULT_HASH_LABEL_DB: &str = include_str!("hashes.txt");
+const DEFAULT_HASH_LABEL_DB: &str = include_str!("../../../../hash_labels/xbr_hashes.txt");
 
 fn download_labels() -> Result<String, reqwest::Error> {
     let response = reqwest::blocking::get(HASH_LABEL_DB_URL)?;
@@ -35,7 +35,7 @@ fn extract_main(install_dir: &Path) {
         map.insert(utils::djb_hash(string), string.to_string());
     }
 
-    let mut file = std::fs::File::open("../HelloDarknessMyOldFriend/Cars3.Xbr").unwrap();
+    let mut file = std::fs::File::open("Cars3.Xbr").unwrap();
     if file.metadata().unwrap().len() != 1263589376 {
         panic!("File size does not match NTSC-U Cars3.Xbr!");
     }
@@ -90,7 +90,7 @@ fn extract_main(install_dir: &Path) {
 }
 
 fn extract_music(install_dir: &Path) {
-    let mut file = std::fs::File::open("../HelloDarknessMyOldFriend/Cars3_Mus.Xbr").unwrap();
+    let mut file = std::fs::File::open("Cars3_Mus.Xbr").unwrap();
     if file.metadata().unwrap().len() != 79775744 {
         panic!("File size does not match NTSC-U Cars3_Mus.Xbr!");
     }
@@ -123,7 +123,7 @@ fn extract_music(install_dir: &Path) {
 }
 
 fn extract_audio(install_dir: &Path) {
-    let mut file = std::fs::File::open("../HelloDarknessMyOldFriend/Cars3_Aud.Xbr").unwrap();
+    let mut file = std::fs::File::open("Cars3_Aud.Xbr").unwrap();
     if file.metadata().unwrap().len() != 559953920 {
         panic!("File size does not match NTSC-U Cars3_Aud.Xbr!");
     }

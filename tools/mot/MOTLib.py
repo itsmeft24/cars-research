@@ -95,9 +95,9 @@ class BezierPositionKey:
         self.TangentInX = key[4]
         self.TangentInY = key[5]
         self.TangentInZ = key[6]
-        self.TangentOutX = key[4]
-        self.TangentOutY = key[5]
-        self.TangentOutZ = key[6]
+        self.TangentOutX = key[7]
+        self.TangentOutY = key[8]
+        self.TangentOutZ = key[9]
     def pack(self, endian='>'):
         return struct.pack(endian+"ffffffffff", self.Time, self.PosX, self.PosY, self.PosZ, self.TangentInX, self.TangentInY, self.TangentInZ, self.TangentOutX, self.TangentOutY, self.TangentOutZ)
     def new(time, posx, posy, posz, tinx, tiny, tinz, toutx, touty, toutz):
